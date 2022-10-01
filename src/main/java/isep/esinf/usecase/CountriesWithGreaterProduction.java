@@ -33,4 +33,13 @@ public class CountriesWithGreaterProduction {
   
     number = this.production;
   }
+
+  private ArrayList<String> getCountriesWithGreaterProductionThan() {
+    FruitData fruitData;
+
+    for (String fruit : fruitData.getCountryData)
+    
+    if (countryProdData > production) {}
+  }
+
 }
