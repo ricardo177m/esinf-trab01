@@ -16,8 +16,7 @@ public class CountryData implements Iterable<Integer> {
   }
 
   public boolean addProductionData(int year, int quantity) {
-    if (productionData.containsKey(year))
-      return false;
+    if (productionData.containsKey(year)) return false;
 
     productionData.put(year, quantity);
     return true;
@@ -34,9 +33,5 @@ public class CountryData implements Iterable<Integer> {
 
   public Set<Integer> getProductionYears() {
     return productionData.keySet();
-  }
-
-  public Set<String> getCountries() {
-    return productionData.
   }
 }
