@@ -9,39 +9,51 @@ import isep.esinf.model.FruitData;
 import isep.esinf.model.GreatestDifferenceResult;
 
 public class GreatestDifferenceTest {
-  static Container data;
+  static Container container;
 
   @BeforeAll
   public static void setup() {
-    data = new Container();
-    CountryData portugalData = new CountryData();
-    portugalData.addProductionData(2010, 100);
-    portugalData.addProductionData(2011, 120);
-    portugalData.addProductionData(2012, 90);
-    portugalData.addProductionData(2013, 100);
-    portugalData.addProductionData(2014, 500);
+    container = new Container();
+    CountryData firstCountryData = new CountryData();
+    firstCountryData.addProductionData(2010, 100);
+    firstCountryData.addProductionData(2011, 120);
+    firstCountryData.addProductionData(2012, 90);
+    firstCountryData.addProductionData(2013, 100);
+    firstCountryData.addProductionData(2014, 500);
 
-    FruitData bananaData = new FruitData();
-    bananaData.addCountryData("Portugal", portugalData);
+    FruitData fruitData = new FruitData();
+    fruitData.addCountryData("First Country", firstCountryData);
 
-    CountryData spainData = new CountryData();
-    spainData.addProductionData(2010, 100);
-    spainData.addProductionData(2011, 130);
-    spainData.addProductionData(2012, 80);
-    spainData.addProductionData(2013, 0);
-    spainData.addProductionData(2014, 100);
+    CountryData secondCountryData = new CountryData();
+    secondCountryData.addProductionData(2010, 100);
+    secondCountryData.addProductionData(2011, 130);
+    secondCountryData.addProductionData(2012, 80);
+    secondCountryData.addProductionData(2013, 0);
+    secondCountryData.addProductionData(2014, 50);
 
-    bananaData.addCountryData("Spain", spainData);
-    data.addFruitData("Banana", bananaData);
+    fruitData.addCountryData("Second Country", secondCountryData);
+    container.addFruitData("Fruit", fruitData);
   }
 
   @Test
-  public void testDifference() {
-    GreatestDifference greatestDifference = new GreatestDifference(data, "Portugal");
+  public void testFirstCountryDifference() {
+    GreatestDifference greatestDifference = new GreatestDifference(container, "First Country");
     GreatestDifferenceResult result = greatestDifference.execute();
-    assertEquals("Banana", result.getFruit());
+
+    assertEquals("Fruit", result.getFruit());
     assertEquals(2013, result.getStartYear());
     assertEquals(2014, result.getEndYear());
     assertEquals(400, result.getDifference());
+  }
+
+  @Test
+  public void testSecondCountryDifference() {
+    GreatestDifference greatestDifference = new GreatestDifference(container, "Second Country");
+    GreatestDifferenceResult result = greatestDifference.execute();
+
+    assertEquals("Fruit", result.getFruit());
+    assertEquals(2012, result.getStartYear());
+    assertEquals(2013, result.getEndYear());
+    assertEquals(80, result.getDifference());
   }
 }
