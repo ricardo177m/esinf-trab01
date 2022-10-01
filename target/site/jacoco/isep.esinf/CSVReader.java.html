@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CSVReader.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">paises-frutos</a> &gt; <a href="index.source.html" class="el_package">isep.esinf</a> &gt; <span class="el_source">CSVReader.java</span></div><h1>CSVReader.java</h1><pre class="source lang-java linenums">package isep.esinf;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Scanner;
+
+public class CSVReader {
+  Scanner sc;
+  File file;
+
+<span class="fc" id="L14">  public CSVReader(String fileName) throws FileNotFoundException {</span>
+<span class="fc" id="L15">    file = new File(fileName);</span>
+<span class="fc" id="L16">    sc = new Scanner(file);</span>
+<span class="fc" id="L17">  }</span>
+
+  public String[] readHeader() {
+<span class="fc" id="L20">    return sc.nextLine().split(&quot;;&quot;);</span>
+  }
+
+  public List&lt;HashMap&lt;String, String&gt;&gt; read() {
+<span class="fc" id="L24">    String[] header = readHeader();</span>
+<span class="fc" id="L25">    List&lt;HashMap&lt;String, String&gt;&gt; list = new ArrayList&lt;&gt;();</span>
+
+<span class="fc bfc" id="L27" title="All 2 branches covered.">    while (sc.hasNextLine()) {</span>
+<span class="fc" id="L28">      HashMap&lt;String, String&gt; map = new HashMap&lt;&gt;();</span>
+
+<span class="fc" id="L30">      String line[] = sc.nextLine().split(&quot;;&quot;);</span>
+<span class="fc bfc" id="L31" title="All 2 branches covered.">      for (int i = 0; i &lt; header.length; i++)</span>
+<span class="fc" id="L32">        map.put(header[i], line[i]);</span>
+
+<span class="fc" id="L34">      list.add(map);</span>
+    }
+
+<span class="fc" id="L37">    return list;</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>
