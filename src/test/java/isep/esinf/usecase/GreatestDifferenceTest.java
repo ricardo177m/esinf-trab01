@@ -56,4 +56,10 @@ public class GreatestDifferenceTest {
     assertEquals(2013, result.getEndYear());
     assertEquals(80, result.getDifference());
   }
+
+  @Test
+  public void testWithSmallSampleData() {
+    // TODO: Implement this test using the small sample data
+    assertEquals(1, 1);
+  }
 }
