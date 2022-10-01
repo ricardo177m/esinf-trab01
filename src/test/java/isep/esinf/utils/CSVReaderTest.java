@@ -1,4 +1,4 @@
-package isep.esinf;
+package isep.esinf.utils;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.io.FileNotFoundException;
@@ -7,15 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
-/**
- * Unit test for simple App.
- */
 class CSVReaderTest {
-  /**
-   * Rigorous Test.
-   *
-   * @throws FileNotFoundException
-   */
   @Test
   void testReadWorks() throws FileNotFoundException {
     List<HashMap<String, String>> l = new ArrayList<HashMap<String, String>>();

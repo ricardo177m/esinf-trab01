@@ -1,4 +1,4 @@
-package isep.esinf;
+package isep.esinf.utils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
