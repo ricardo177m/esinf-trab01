@@ -23,7 +23,7 @@ public class CountryData implements Iterable<Integer> {
     return true;
   }
 
-  public int getProductionData(int year) {
+  public Integer getProductionData(int year) {
     return productionData.get(year);
   }
 

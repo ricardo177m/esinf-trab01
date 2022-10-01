@@ -3,6 +3,7 @@ package isep.esinf.usecase;
 import isep.esinf.model.Container;
 import isep.esinf.model.CountryData;
 import isep.esinf.model.FruitData;
+import isep.esinf.model.GreatestDifferenceResult;
 
 /*
  * Alínea 5.
@@ -16,7 +17,12 @@ public class GreatestDifference {
     this.country = country;
   }
 
-  public void execute() {
+  /**
+   *
+   * @return The first year of the two consecutive years in the country with the greatest difference
+   *         in production.
+   */
+  public GreatestDifferenceResult execute() {
     int maxDifference = 0;
     String maxDifferenceFruit = "";
     int maxDifferenceStartYear = 0;
@@ -27,21 +33,22 @@ public class GreatestDifference {
       CountryData countryProductionData = fruitData.getCountryData(country);
       for (Integer productionYear : countryProductionData.getProductionYears()) {
         int production = countryProductionData.getProductionData(productionYear);
-        int nextProduction = countryProductionData.getProductionData(productionYear + 1);
-        int difference = Math.abs(production - nextProduction);
+        Integer nextProduction = countryProductionData.getProductionData(productionYear + 1);
+        if (nextProduction != null) {
 
-        if (difference > maxDifference) {
-          maxDifference = difference;
-          maxDifferenceFruit = fruit;
-          maxDifferenceStartYear = productionYear;
-          maxDifferenceEndYear = productionYear + 1;
+          int difference = Math.abs(production - nextProduction);
+
+          if (difference > maxDifference) {
+            maxDifference = difference;
+            maxDifferenceFruit = fruit;
+            maxDifferenceStartYear = productionYear;
+            maxDifferenceEndYear = productionYear + 1;
+          }
         }
       }
     }
 
-    System.out.println("Max difference: " + maxDifference);
-    System.out.println("Fruit: " + maxDifferenceFruit);
-    System.out.println("Start year: " + maxDifferenceStartYear);
-    System.out.println("End year: " + maxDifferenceEndYear);
+    return new GreatestDifferenceResult(maxDifferenceFruit, maxDifferenceStartYear,
+        maxDifferenceEndYear, maxDifference);
   }
 }
