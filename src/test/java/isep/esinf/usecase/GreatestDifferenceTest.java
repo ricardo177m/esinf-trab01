@@ -14,6 +14,7 @@ public class GreatestDifferenceTest {
   @BeforeAll
   public static void setup() {
     container = new Container();
+
     CountryData firstCountryData = new CountryData();
     firstCountryData.addProductionData(2010, 100);
     firstCountryData.addProductionData(2011, 120);
@@ -21,8 +22,8 @@ public class GreatestDifferenceTest {
     firstCountryData.addProductionData(2013, 100);
     firstCountryData.addProductionData(2014, 500);
 
-    FruitData fruitData = new FruitData();
-    fruitData.addCountryData("First Country", firstCountryData);
+    FruitData firstFruitData = new FruitData();
+    firstFruitData.addCountryData("First Country", firstCountryData);
 
     CountryData secondCountryData = new CountryData();
     secondCountryData.addProductionData(2010, 100);
@@ -31,8 +32,18 @@ public class GreatestDifferenceTest {
     secondCountryData.addProductionData(2013, 0);
     secondCountryData.addProductionData(2014, 50);
 
-    fruitData.addCountryData("Second Country", secondCountryData);
-    container.addFruitData("Fruit", fruitData);
+    firstFruitData.addCountryData("Second Country", secondCountryData);
+    container.addFruitData("Fruit", firstFruitData);
+
+    CountryData otherCountryData = new CountryData();
+    otherCountryData.addProductionData(2010, 50);
+    otherCountryData.addProductionData(2011, 80);
+    otherCountryData.addProductionData(2012, 100);
+    otherCountryData.addProductionData(2013, 120);
+    otherCountryData.addProductionData(2014, 100);
+
+    FruitData secondFruitData = new FruitData();
+    secondFruitData.addCountryData("First Country", otherCountryData);
   }
 
   @Test
