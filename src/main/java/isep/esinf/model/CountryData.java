@@ -33,9 +33,5 @@ public class CountryData implements Iterable<Integer> {
 
   public Set<Integer> getProductionYears() {
     return productionData.keySet();
-  }
-
-  public Set<String> getCountries() {
-    return productionData.
-  }
+  } 
 }
