@@ -19,28 +19,21 @@ public class YearProductionData implements Comparable<YearProductionData> {
 
   @Override
   public boolean equals(Object o) {
-    if (this == o)
-      return true;
-    if (o == null || getClass() != o.getClass())
-      return false;
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
 
     YearProductionData that = (YearProductionData) o;
 
-    if (year != that.year)
-      return false;
+    if (year != that.year) return false;
     return quantity == that.quantity;
   }
 
   @Override
   public int compareTo(YearProductionData o) {
-    if (this.year < o.year)
-      return -1;
-    if (this.year > o.year)
-      return 1;
-    if (this.quantity < o.quantity)
-      return -1;
-    if (this.quantity > o.quantity)
-      return 1;
+    if (this.year < o.year) return -1;
+    if (this.year > o.year) return 1;
+    if (this.quantity < o.quantity) return -1;
+    if (this.quantity > o.quantity) return 1;
     return 0;
   }
 }
