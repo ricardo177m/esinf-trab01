@@ -1,37 +1,45 @@
 package isep.esinf.model;
 
 import java.util.Iterator;
+import java.util.NavigableSet;
 import java.util.Set;
-import java.util.SortedMap;
-import java.util.TreeMap;
+import java.util.TreeSet;
 
-public class CountryData implements Iterable<Integer> {
-  SortedMap<Integer, Integer> productionData;
+public class CountryData implements Iterable<YearProductionData> {
+  NavigableSet<YearProductionData> productionData;
 
   public CountryData() {
     /*
      * TreeMap is used to preserve year order (Integers have natural ordering)
      */
-    productionData = new TreeMap<>();
+    productionData = new TreeSet<>();
   }
 
   public boolean addProductionData(int year, int quantity) {
-    if (productionData.containsKey(year)) return false;
+    if (productionData.contains(new YearProductionData(year, quantity))) return false;
 
-    productionData.put(year, quantity);
+    productionData.add(new YearProductionData(year, quantity));
     return true;
   }
 
   public Integer getProductionData(int year) {
-    return productionData.get(year);
-  }
+    for (YearProductionData yearProductionData : productionData)
+      if (yearProductionData.getYear() == year) return yearProductionData.getQuantity();
 
-  @Override
-  public Iterator<Integer> iterator() {
-    return productionData.values().iterator();
+    return null;
   }
 
   public Set<Integer> getProductionYears() {
-    return productionData.keySet();
-  } 
+    Set<Integer> years = new TreeSet<>();
+
+    for (YearProductionData yearProductionData : productionData)
+      years.add(yearProductionData.getYear());
+
+    return years;
+  }
+
+  @Override
+  public Iterator<YearProductionData> iterator() {
+    return productionData.iterator();
+  }
 }

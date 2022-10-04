@@ -7,6 +7,7 @@ import java.util.Set;
 import isep.esinf.model.Container;
 import isep.esinf.model.CountryData;
 import isep.esinf.model.FruitData;
+import isep.esinf.model.YearProductionData;
 
 /*
  * Alínea 4.
@@ -33,13 +34,16 @@ public class CountriesWithProductionGrowth {
       int max = 0;
       int previousProductionQuantity = 0;
 
-      for (Integer productionQuantity : countryData) {
-        if (productionQuantity > previousProductionQuantity) count++;
-        else count = 1;
+      for (YearProductionData productionQuantity : countryData) {
+        if (productionQuantity.getQuantity() > previousProductionQuantity)
+          count++;
+        else
+          count = 1;
 
-        if (count > max) max = count;
+        if (count > max)
+          max = count;
 
-        previousProductionQuantity = productionQuantity;
+        previousProductionQuantity = productionQuantity.getQuantity();
       }
 
       ArrayList<String> list = (result.containsKey(max) ? result.get(max) : new ArrayList<>());
