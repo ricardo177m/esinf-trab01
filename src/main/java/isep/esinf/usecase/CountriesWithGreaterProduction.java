@@ -26,12 +26,17 @@ public class CountriesWithGreaterProduction {
     this.data = data;
   }
 
+  /*
+   * Gets the List of countries by their production. Only countries with 1 year or more of production of a specific fruit.
+   * Only countries with equal or higher of quantity of production of that fruit
+   */
   public List<String> execute() {
     SortedMap<YearProductionData, String> map = getCountriesWithGreaterProduction(production);
     return new ArrayList<>(map.values());
 
   }
 
+  /* Gets the first year of production of a specific country with equal or higher quantity */
   private YearProductionData getProductionOfFirstYearWithGreaterProduction(CountryData countryData, int production) {
     for (YearProductionData productionData : countryData)
 
@@ -39,6 +44,11 @@ public class CountriesWithGreaterProduction {
     return null;
   }
 
+  /*
+   * Saves the countries by order of quantity of production of the fruit For every country it looks if it matches the
+   * criteria (produces the fruit, 1 year or more of production, higher or equal production), if it matches saves to the
+   * SortedMap already by their production
+   */
   private SortedMap<YearProductionData, String> getCountriesWithGreaterProduction(int production) {
     SortedMap<YearProductionData, String> res = new TreeMap<>();
 
