@@ -3,6 +3,7 @@ package isep.esinf.model;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 
 public class FruitData implements Iterable<CountryData> {
   Map<String, CountryData> fruitData;
@@ -12,8 +13,7 @@ public class FruitData implements Iterable<CountryData> {
   }
 
   public boolean addCountryData(String country, CountryData countryData) {
-    if (fruitData.containsKey(country))
-      return false;
+    if (fruitData.containsKey(country)) return false;
 
 
     fruitData.put(country, countryData);
@@ -22,6 +22,10 @@ public class FruitData implements Iterable<CountryData> {
 
   public CountryData getCountryData(String country) {
     return fruitData.get(country);
+  }
+
+  public Set<String> getCountries() {
+    return fruitData.keySet();
   }
 
   @Override
