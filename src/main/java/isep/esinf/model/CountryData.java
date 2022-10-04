@@ -38,6 +38,21 @@ public class CountryData implements Iterable<YearProductionData> {
     return years;
   }
 
+
+  /**
+   * Get the production quantity for this country over all years.
+   * 
+   * @return sum qty
+   */
+  public int getOverallProductionQty() {
+    int total = 0;
+
+    for (YearProductionData yearProductionData : productionData)
+      total += yearProductionData.getQuantity();
+
+    return total;
+  }
+
   @Override
   public Iterator<YearProductionData> iterator() {
     return productionData.iterator();
