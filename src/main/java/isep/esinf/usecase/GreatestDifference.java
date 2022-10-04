@@ -30,6 +30,7 @@ public class GreatestDifference {
     for (String fruit : data.getFruits()) {
       FruitData fruitData = data.getFruitData(fruit);
       CountryData countryProductionData = fruitData.getCountryData(country);
+      if (countryProductionData == null) continue;
       for (Integer productionYear : countryProductionData.getProductionYears()) {
         int production = countryProductionData.getProductionData(productionYear);
         Integer nextProduction = countryProductionData.getProductionData(productionYear + 1);
