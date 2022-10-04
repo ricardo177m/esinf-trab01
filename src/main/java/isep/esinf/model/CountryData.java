@@ -1,12 +1,12 @@
 package isep.esinf.model;
 
 import java.util.Iterator;
-import java.util.NavigableSet;
 import java.util.Set;
+import java.util.SortedSet;
 import java.util.TreeSet;
 
 public class CountryData implements Iterable<YearProductionData> {
-  NavigableSet<YearProductionData> productionData;
+  SortedSet<YearProductionData> productionData;
 
   public CountryData() {
     /*
