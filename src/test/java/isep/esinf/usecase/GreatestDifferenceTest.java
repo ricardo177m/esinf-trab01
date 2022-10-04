@@ -44,6 +44,7 @@ public class GreatestDifferenceTest {
 
     FruitData secondFruitData = new FruitData();
     secondFruitData.addCountryData("First Country", otherCountryData);
+    container.addFruitData("Second Fruit", secondFruitData);
   }
 
   @Test

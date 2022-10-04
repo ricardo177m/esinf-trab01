@@ -38,6 +38,10 @@ public class CountryData implements Iterable<YearProductionData> {
     return years;
   }
 
+  public int size() {
+    return productionData.size();
+  }
+
   @Override
   public Iterator<YearProductionData> iterator() {
     return productionData.iterator();

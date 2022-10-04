@@ -19,8 +19,7 @@ public class GreatestDifference {
 
   /**
    *
-   * @return The first year of the two consecutive years in the country with the greatest difference
-   *         in production.
+   * @return The first year of the two consecutive years in the country with the greatest difference in production.
    */
   public GreatestDifferenceResult execute() {
     int maxDifference = 0;
@@ -35,7 +34,6 @@ public class GreatestDifference {
         int production = countryProductionData.getProductionData(productionYear);
         Integer nextProduction = countryProductionData.getProductionData(productionYear + 1);
         if (nextProduction != null) {
-
           int difference = Math.abs(production - nextProduction);
 
           if (difference > maxDifference) {
@@ -48,7 +46,6 @@ public class GreatestDifference {
       }
     }
 
-    return new GreatestDifferenceResult(maxDifferenceFruit, maxDifferenceStartYear,
-        maxDifferenceEndYear, maxDifference);
+    return new GreatestDifferenceResult(maxDifferenceFruit, maxDifferenceStartYear, maxDifferenceEndYear, maxDifference);
   }
 }
