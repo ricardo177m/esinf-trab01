@@ -35,13 +35,10 @@ public class CountriesWithProductionGrowth {
       int previousProductionQuantity = 0;
 
       for (YearProductionData productionQuantity : countryData) {
-        if (productionQuantity.getQuantity() > previousProductionQuantity)
-          count++;
-        else
-          count = 1;
+        if (productionQuantity.getQuantity() > previousProductionQuantity) count++;
+        else count = 1;
 
-        if (count > max)
-          max = count;
+        if (count > max) max = count;
 
         previousProductionQuantity = productionQuantity.getQuantity();
       }

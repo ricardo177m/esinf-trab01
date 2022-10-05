@@ -16,8 +16,7 @@ public class Container implements Iterable<FruitData> {
   }
 
   public boolean addFruitData(String fruit, FruitData fruitData) {
-    if (data.containsKey(fruit))
-      return false;
+    if (data.containsKey(fruit)) return false;
 
     data.put(fruit, fruitData);
     return true;
@@ -42,6 +41,7 @@ public class Container implements Iterable<FruitData> {
     return false;
   }
 
+  public int size() {
+    return data.size();
+  }
 }
-
-

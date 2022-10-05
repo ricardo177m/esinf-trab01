@@ -5,6 +5,8 @@ public class YearProductionData implements Comparable<YearProductionData> {
   private int quantity;
 
   YearProductionData(int year, int quantity) {
+    if (quantity < 0) throw new IllegalArgumentException("Quantity must be positive");
+
     this.year = year;
     this.quantity = quantity;
   }
@@ -18,29 +20,22 @@ public class YearProductionData implements Comparable<YearProductionData> {
   }
 
   @Override
-  public boolean equals(Object o) {
-    if (this == o)
-      return true;
-    if (o == null || getClass() != o.getClass())
-      return false;
+  public boolean equals(Object other) {
+    if (other == null) return false;
+    if (this == other) return true;
 
-    YearProductionData that = (YearProductionData) o;
+    YearProductionData that = (YearProductionData) other;
 
-    if (year != that.year)
-      return false;
-    return quantity == that.quantity;
+    if (year == that.year) return true;
+    return false;
   }
 
   @Override
-  public int compareTo(YearProductionData o) {
-    if (this.year < o.year)
-      return -1;
-    if (this.year > o.year)
-      return 1;
-    if (this.quantity < o.quantity)
-      return -1;
-    if (this.quantity > o.quantity)
-      return 1;
+  public int compareTo(YearProductionData other) {
+    if (this.year < other.year) return -1;
+    if (this.year > other.year) return 1;
+    if (this.quantity < other.quantity) return -1;
+    if (this.quantity > other.quantity) return 1;
     return 0;
   }
 }

@@ -8,8 +8,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class CSVReader {
-  Scanner sc;
-  File file;
+  private Scanner sc;
+  private File file;
 
   public CSVReader(String fileName) throws FileNotFoundException {
     file = new File(fileName);
