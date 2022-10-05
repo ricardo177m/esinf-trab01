@@ -47,6 +47,7 @@ public class GreatestDifference {
       }
     }
 
+    if (maxDifference == 0) return null;
     return new GreatestDifferenceResult(maxDifferenceFruit, maxDifferenceStartYear, maxDifferenceEndYear, maxDifference);
   }
 }

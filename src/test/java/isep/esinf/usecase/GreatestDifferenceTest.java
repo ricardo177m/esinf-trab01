@@ -70,6 +70,14 @@ public class GreatestDifferenceTest {
   }
 
   @Test
+  public void testInvalidCountryDifference() {
+    GreatestDifference greatestDifference = new GreatestDifference(container, "Invalid Country");
+    GreatestDifferenceResult result = greatestDifference.execute();
+
+    assertEquals(null, result);
+  }
+
+  @Test
   public void testWithSmallSampleData() {
     // TODO: Implement this test using the small sample data
     assertEquals(1, 1);

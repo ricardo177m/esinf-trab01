@@ -28,4 +28,9 @@ public class GreatestDifferenceResult {
   public int getDifference() {
     return difference;
   }
+
+  @Override
+  public String toString() {
+    return String.format("[%d/%d, %s, %d]", startYear, endYear, fruit, difference);
+  }
 }
