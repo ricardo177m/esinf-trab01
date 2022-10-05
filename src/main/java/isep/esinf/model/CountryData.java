@@ -9,13 +9,13 @@ public class CountryData implements Iterable<YearProductionData> {
   SortedSet<YearProductionData> productionData;
 
   public CountryData() {
-    /*
-     * TreeMap is used to preserve year order (Integers have natural ordering)
-     */
+    // TreeMap is used to preserve year order (Integers have natural ordering)
     productionData = new TreeSet<>();
   }
 
   public boolean addProductionData(int year, int quantity) {
+    if (quantity < 0) throw new IllegalArgumentException("Quantity must be positive");
+
     if (productionData.contains(new YearProductionData(year, quantity))) return false;
 
     productionData.add(new YearProductionData(year, quantity));

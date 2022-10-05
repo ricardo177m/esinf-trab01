@@ -31,4 +31,8 @@ public class FruitData implements Iterable<CountryData> {
   public Iterator<CountryData> iterator() {
     return fruitData.values().iterator();
   }
+
+  public int size() {
+    return fruitData.size();
+  }
 }

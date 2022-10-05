@@ -5,6 +5,8 @@ public class YearProductionData implements Comparable<YearProductionData> {
   private int quantity;
 
   YearProductionData(int year, int quantity) {
+    if (quantity < 0) throw new IllegalArgumentException("Quantity must be positive");
+
     this.year = year;
     this.quantity = quantity;
   }

@@ -34,4 +34,8 @@ public class Container implements Iterable<FruitData> {
   public Set<String> getFruits() {
     return data.keySet();
   }
+
+  public int size() {
+    return data.size();
+  }
 }
