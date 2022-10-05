@@ -47,13 +47,14 @@ public class CountriesWithGreaterProductionTest {
 
     fruitData.addCountryData("Third Country", thirdCountryData);
 
-    /*
-     * CountryData fourCountryData = new CountryData(); fourCountryData.addProductionData(2010, 190);
-     * fourCountryData.addProductionData(2011, 100); fourCountryData.addProductionData(2012, 90);
-     * fourCountryData.addProductionData(2013, 10); fourCountryData.addProductionData(2014, 40);
-     *
-     * fruitData.addCountryData("Four Country", fourCountryData);
-     */
+    CountryData fourthCountryData = new CountryData();
+    fourthCountryData.addProductionData(2010, 190);
+    fourthCountryData.addProductionData(2011, 100);
+    fourthCountryData.addProductionData(2012, 90);
+    fourthCountryData.addProductionData(2013, 10);
+    fourthCountryData.addProductionData(2014, 40);
+
+    fruitData.addCountryData("Fourth Country", fourthCountryData);
 
     CountryData fifthCountryData = new CountryData();
 
@@ -69,7 +70,7 @@ public class CountriesWithGreaterProductionTest {
    */
   @Test
   public void testCountriesWithProductionGrowth() {
-    CountriesWithGreaterProduction countriesWithGreaterProduction = new CountriesWithGreaterProduction("Fruit", 50, container);
+    CountriesWithGreaterProduction countriesWithGreaterProduction = new CountriesWithGreaterProduction(container, "Fruit", 50);
 
     List<String> res = countriesWithGreaterProduction.execute();
     List<String> expected = new ArrayList<>();
@@ -78,7 +79,6 @@ public class CountriesWithGreaterProductionTest {
     expected.add("Third Country");
 
     assertEquals(expected, res);
-
   }
 
   /*
@@ -87,7 +87,7 @@ public class CountriesWithGreaterProductionTest {
    */
   @Test
   public void testCountriesWithProductionGrowthSecond() {
-    CountriesWithGreaterProduction countriesWithGreaterProduction = new CountriesWithGreaterProduction("Fruit", 130, container);
+    CountriesWithGreaterProduction countriesWithGreaterProduction = new CountriesWithGreaterProduction(container, "Fruit", 130);
 
     List<String> res = countriesWithGreaterProduction.execute();
     List<String> expected = new ArrayList<>();
@@ -104,7 +104,7 @@ public class CountriesWithGreaterProductionTest {
    */
   @Test
   public void testCountriesWithProductionGrowthThird() {
-    CountriesWithGreaterProduction countriesWithGreaterProduction = new CountriesWithGreaterProduction("Fruit", 400, container);
+    CountriesWithGreaterProduction countriesWithGreaterProduction = new CountriesWithGreaterProduction(container, "Fruit", 400);
 
     List<String> res = countriesWithGreaterProduction.execute();
     List<String> expected = new ArrayList<>();
@@ -118,7 +118,7 @@ public class CountriesWithGreaterProductionTest {
    */
   @Test
   public void testCountriesWithProductionGrowthFour() {
-    CountriesWithGreaterProduction countriesWithGreaterProduction = new CountriesWithGreaterProduction("Fruit", 4000, container);
+    CountriesWithGreaterProduction countriesWithGreaterProduction = new CountriesWithGreaterProduction(container, "Fruit", 4000);
 
     List<String> res = countriesWithGreaterProduction.execute();
     List<String> expected = new ArrayList<>();
@@ -132,7 +132,7 @@ public class CountriesWithGreaterProductionTest {
    */
   @Test
   public void testCountriesWithProductionGrowthFifth() {
-    CountriesWithGreaterProduction countriesWithGreaterProduction = new CountriesWithGreaterProduction("Apple", 50, container);
+    CountriesWithGreaterProduction countriesWithGreaterProduction = new CountriesWithGreaterProduction(container, "Apple", 50);
 
     List<String> res = countriesWithGreaterProduction.execute();
     List<String> expected = new ArrayList<>();
@@ -143,14 +143,14 @@ public class CountriesWithGreaterProductionTest {
 
   // @Test
   public void testCountriesWithProductionGrowthSix() {
-    CountriesWithGreaterProduction countriesWithGreaterProduction = new CountriesWithGreaterProduction("Fruit", 50, container);
+    CountriesWithGreaterProduction countriesWithGreaterProduction = new CountriesWithGreaterProduction(container, "Fruit", 50);
 
     List<String> res = countriesWithGreaterProduction.execute();
     List<String> expected = new ArrayList<>();
     expected.add("First Country");
     expected.add("Second Country");
     expected.add("Third Country");
-    expected.add("Four Country");
+    expected.add("Fourth Country");
 
     assertEquals(expected, res);
 
@@ -160,7 +160,7 @@ public class CountriesWithGreaterProductionTest {
   @Test
   public void testValidInputFruit() {
     assertThrows(IllegalArgumentException.class, () -> {
-      new CountriesWithGreaterProduction("", 4000, container);
+      new CountriesWithGreaterProduction(container, "", 4000);
     }, "Fruit invalid.");
   }
 
@@ -168,7 +168,7 @@ public class CountriesWithGreaterProductionTest {
   @Test
   public void testValidInputFruitTwo() {
     assertThrows(IllegalArgumentException.class, () -> {
-      new CountriesWithGreaterProduction(null, 4000, container);
+      new CountriesWithGreaterProduction(container, null, 4000);
     }, "Fruit invalid.");
   }
 
@@ -176,7 +176,7 @@ public class CountriesWithGreaterProductionTest {
   @Test
   public void testValidInputProduction() {
     assertThrows(IllegalArgumentException.class, () -> {
-      new CountriesWithGreaterProduction("Fruit", 0, container);
+      new CountriesWithGreaterProduction(container, "Fruit", 0);
     }, "Production invalid.");
   }
 

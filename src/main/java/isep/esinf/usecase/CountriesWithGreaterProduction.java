@@ -2,13 +2,14 @@ package isep.esinf.usecase;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.SortedMap;
 import java.util.TreeMap;
-import isep.esinf.model.FruitData;
-import isep.esinf.model.YearProductionData;
 import isep.esinf.model.Container;
 import isep.esinf.model.CountryData;
+import isep.esinf.model.FruitData;
+import isep.esinf.model.YearProductionData;
 
 /*
  * Alínea 2.
@@ -20,7 +21,7 @@ public class CountriesWithGreaterProduction {
   int production;
 
   /* Class constructor */
-  public CountriesWithGreaterProduction(String fruit, int production, Container data) {
+  public CountriesWithGreaterProduction(Container data, String fruit, int production) {
     validateFruit(fruit);
     validateProduction(production);
     this.data = data;
@@ -31,16 +32,20 @@ public class CountriesWithGreaterProduction {
    * Only countries with equal or higher of quantity of production of that fruit
    */
   public List<String> execute() {
-    SortedMap<YearProductionData, String> map = getCountriesWithGreaterProduction(production);
-    return new ArrayList<>(map.values());
+    SortedMap<String, YearProductionData> map = getCountriesWithGreaterProduction(production);
 
+
+    List<Entry<String, YearProductionData>> list = new ArrayList<>(map.entrySet());
+    list.sort(Entry.comparingByValue());
+
+    return list.stream().map(Entry::getKey).toList();
   }
 
   /* Gets the first year of production of a specific country with equal or higher quantity */
   private YearProductionData getProductionOfFirstYearWithGreaterProduction(CountryData countryData, int production) {
     for (YearProductionData productionData : countryData)
-
       if (productionData.getQuantity() >= production) return productionData;
+
     return null;
   }
 
@@ -49,8 +54,8 @@ public class CountriesWithGreaterProduction {
    * criteria (produces the fruit, 1 year or more of production, higher or equal production), if it matches saves to the
    * SortedMap already by their production
    */
-  private SortedMap<YearProductionData, String> getCountriesWithGreaterProduction(int production) {
-    SortedMap<YearProductionData, String> res = new TreeMap<>();
+  private SortedMap<String, YearProductionData> getCountriesWithGreaterProduction(int production) {
+    SortedMap<String, YearProductionData> res = new TreeMap<>();
 
     FruitData fruitData = data.getFruitData(fruit);
     Set<String> countries = fruitData.getCountries();
@@ -59,7 +64,7 @@ public class CountriesWithGreaterProduction {
       CountryData countryData = fruitData.getCountryData(country);
       YearProductionData firstYearProductionData = getProductionOfFirstYearWithGreaterProduction(countryData, production);
 
-      if (firstYearProductionData != null) res.put(firstYearProductionData, country);
+      if (firstYearProductionData != null) res.put(country, firstYearProductionData);
     }
 
     return res;
