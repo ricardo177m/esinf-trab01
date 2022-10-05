@@ -41,13 +41,13 @@ public class CountryData implements Iterable<YearProductionData> {
   public int size() {
     return productionData.size();
   }
-  
+
   /**
    * Get the production quantity for this country over all years.
-   * 
+   *
    * @return sum qty
    */
-  public int getOverallProductionQty() {
+  public int getOverallProductionQuantity() {
     int total = 0;
 
     for (YearProductionData yearProductionData : productionData)

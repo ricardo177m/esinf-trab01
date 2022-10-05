@@ -1,0 +1,71 @@
+@startuml CD
+
+skinparam classAttributeIconSize 0
+hide empty members
+
+class Container {
+  -data: Map<String, FruitData>
+
+  +addFruitData(fruit, fruitData)
+  +getFruitData(fruit)
+  +getFruits()
+  +iterator()
+}
+
+class FruitData {
+  -fruitData: Map<String, CountryData>
+
+  +addCountryData(country, countryData)
+  +getCountryData(country)
+  +getCountries()
+  +iterator()
+}
+
+class CountryData {
+  -productionData: SortedSet<YearProductionData>
+
+  +addProductionData(year, quantity)
+  +getProductionData(year)
+  +getProductionYears()
+  +getOverallProductionQuantity()
+  +size()
+  +iterator()
+}
+
+class YearProductionData {
+  -year: int
+  -quantity: int
+
+  +getYear()
+  +getQuantity()
+  +equals(other)
+  +compareTo(other)
+}
+
+class CSVReader {
+  -scanner: Scanner
+  -file: File
+
+  +read()
+  -readHeader()
+}
+
+interface Iterable
+
+interface Comparable
+
+Container "1" o-- "0..*" FruitData : contains
+
+FruitData "1" o-- "0..*" CountryData : contains
+
+CountryData "1" o-- "0..*" YearProductionData : contains
+
+YearProductionData --|> Comparable
+
+CountryData --|> Iterable
+
+FruitData --|> Iterable
+
+Container --|> Iterable
+
+@enduml

@@ -8,9 +8,9 @@ import isep.esinf.model.FruitData;
 
 /**
  * Alínea 3.
- * 
- * Given a production quantity Q, find the minimum number of countries that together can get a
- * greater production qty than Q.
+ *
+ * Given a production quantity Q, find the minimum number of countries that together can get a greater production qty
+ * than Q.
  */
 public class CountrySetWithHigherProduction {
   Container container;
@@ -54,10 +54,10 @@ public class CountrySetWithHigherProduction {
         CountryData countryData = fruitData.getCountryData(country);
 
         if (productionQtyPerCountry.containsKey(country)) {
-          int newProdQty = productionQtyPerCountry.get(country) + countryData.getOverallProductionQty();
+          int newProdQty = productionQtyPerCountry.get(country) + countryData.getOverallProductionQuantity();
           productionQtyPerCountry.put(country, newProdQty);
         } else {
-          productionQtyPerCountry.put(country, countryData.getOverallProductionQty());
+          productionQtyPerCountry.put(country, countryData.getOverallProductionQuantity());
         }
       }
     }

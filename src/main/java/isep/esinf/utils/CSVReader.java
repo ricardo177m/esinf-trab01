@@ -8,26 +8,26 @@ import java.util.List;
 import java.util.Scanner;
 
 public class CSVReader {
-  Scanner sc;
-  File file;
+  private Scanner scanner;
+  private File file;
 
   public CSVReader(String fileName) throws FileNotFoundException {
     file = new File(fileName);
-    sc = new Scanner(file);
+    scanner = new Scanner(file);
   }
 
-  public String[] readHeader() {
-    return sc.nextLine().split(";");
+  private String[] readHeader() {
+    return scanner.nextLine().split(";");
   }
 
   public List<HashMap<String, String>> read() {
     String[] header = readHeader();
     List<HashMap<String, String>> list = new ArrayList<>();
 
-    while (sc.hasNextLine()) {
+    while (scanner.hasNextLine()) {
       HashMap<String, String> map = new HashMap<>();
 
-      String line[] = sc.nextLine().split(";");
+      String line[] = scanner.nextLine().split(";");
       for (int i = 0; i < header.length; i++)
         map.put(header[i], line[i]);
 
