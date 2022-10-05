@@ -10,12 +10,13 @@ import isep.esinf.model.FruitData;
 
 public class CountrySetWithHigherProductionTest {
   static Container container;
+  static String datafile = "./src/test/data/CountrySetWithHigherProductionUsecaseData.csv";
 
   @BeforeAll
   public static void setUp() {
     container = new Container();
 
-    // TODO: convert this data to a csv file and import it on setup
+    // TODO: import this data from the csv file
     CountryData countryData1 = new CountryData();
     countryData1.addProductionData(2010, 50);
     countryData1.addProductionData(2011, 100);
