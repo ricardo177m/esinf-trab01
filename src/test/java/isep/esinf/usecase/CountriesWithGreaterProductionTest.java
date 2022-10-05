@@ -25,7 +25,7 @@ public class CountriesWithGreaterProductionTest {
     firstCountryData.addProductionData(2011, 120);
     firstCountryData.addProductionData(2012, 90);
     firstCountryData.addProductionData(2013, 100);
-    firstCountryData.addProductionData(2014, 500);
+    firstCountryData.addProductionData(2014, 600);
 
     fruitData.addCountryData("First Country", firstCountryData);
 
@@ -43,7 +43,7 @@ public class CountriesWithGreaterProductionTest {
     thirdCountryData.addProductionData(2011, 130);
     thirdCountryData.addProductionData(2012, 80);
     thirdCountryData.addProductionData(2013, 0);
-    thirdCountryData.addProductionData(2014, 50);
+    thirdCountryData.addProductionData(2014, 350);
 
     fruitData.addCountryData("Third Country", thirdCountryData);
 
@@ -51,7 +51,7 @@ public class CountriesWithGreaterProductionTest {
     fourthCountryData.addProductionData(2010, 190);
     fourthCountryData.addProductionData(2011, 100);
     fourthCountryData.addProductionData(2012, 90);
-    fourthCountryData.addProductionData(2013, 10);
+    fourthCountryData.addProductionData(2013, 350);
     fourthCountryData.addProductionData(2014, 40);
 
     fruitData.addCountryData("Fourth Country", fourthCountryData);
@@ -76,6 +76,7 @@ public class CountriesWithGreaterProductionTest {
     List<String> expected = new ArrayList<>();
     expected.add("First Country");
     expected.add("Second Country");
+    expected.add("Fourth Country");
     expected.add("Third Country");
 
     assertEquals(expected, res);
@@ -92,6 +93,7 @@ public class CountriesWithGreaterProductionTest {
     List<String> res = countriesWithGreaterProduction.execute();
     List<String> expected = new ArrayList<>();
     expected.add("Second Country");
+    expected.add("Fourth Country");
     expected.add("Third Country");
     expected.add("First Country");
 
@@ -141,16 +143,15 @@ public class CountriesWithGreaterProductionTest {
 
   }
 
-  // @Test
+  @Test
   public void testCountriesWithProductionGrowthSix() {
-    CountriesWithGreaterProduction countriesWithGreaterProduction = new CountriesWithGreaterProduction(container, "Fruit", 50);
+    CountriesWithGreaterProduction countriesWithGreaterProduction = new CountriesWithGreaterProduction(container, "Fruit", 300);
 
     List<String> res = countriesWithGreaterProduction.execute();
     List<String> expected = new ArrayList<>();
-    expected.add("First Country");
-    expected.add("Second Country");
-    expected.add("Third Country");
     expected.add("Fourth Country");
+    expected.add("Third Country");
+    expected.add("First Country");
 
     assertEquals(expected, res);
 
