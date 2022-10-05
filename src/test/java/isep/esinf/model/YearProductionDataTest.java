@@ -18,4 +18,18 @@ public class YearProductionDataTest {
       new YearProductionData(100, -1);
     }, "Quantity must be positive");
   }
+
+  @Test
+  public void testEqualsByYear() {
+    YearProductionData yearProductionData1 = new YearProductionData(100, 100);
+    YearProductionData yearProductionData2 = new YearProductionData(100, 200);
+    assertEquals(yearProductionData1, yearProductionData2);
+  }
+
+  @Test
+  public void testEqualsByYearAndQuantity() {
+    YearProductionData yearProductionData1 = new YearProductionData(100, 100);
+    YearProductionData yearProductionData2 = new YearProductionData(100, 100);
+    assertEquals(yearProductionData1, yearProductionData2);
+  }
 }

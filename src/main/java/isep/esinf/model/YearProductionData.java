@@ -21,13 +21,13 @@ public class YearProductionData implements Comparable<YearProductionData> {
 
   @Override
   public boolean equals(Object other) {
-    if (other == null || getClass() != other.getClass()) return false;
+    if (other == null) return false;
     if (this == other) return true;
 
     YearProductionData that = (YearProductionData) other;
 
-    if (year != that.year) return false;
-    return quantity == that.quantity;
+    if (year == that.year) return true;
+    return false;
   }
 
   @Override

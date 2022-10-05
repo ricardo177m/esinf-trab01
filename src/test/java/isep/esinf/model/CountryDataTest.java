@@ -34,6 +34,17 @@ public class CountryDataTest {
   }
 
   @Test
+  public void testAddDuplicatedProductionData() {
+    CountryData countryData = new CountryData();
+    countryData.addProductionData(2010, 100);
+    countryData.addProductionData(2011, 120);
+    countryData.addProductionData(2010, 200);
+
+    assertEquals(100, countryData.getProductionData(2010));
+    assertEquals(countryData.size(), 2);
+  }
+
+  @Test
   public void testGetProductionDataWithInvalidYear() {
     CountryData countryData = new CountryData();
     countryData.addProductionData(2010, 100);

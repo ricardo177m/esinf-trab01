@@ -16,10 +16,17 @@ public class CountryData implements Iterable<YearProductionData> {
   public boolean addProductionData(int year, int quantity) {
     if (quantity < 0) throw new IllegalArgumentException("Quantity must be positive");
 
-    if (productionData.contains(new YearProductionData(year, quantity))) return false;
+    if (hasProductionDataInYear(year)) return false;
 
     productionData.add(new YearProductionData(year, quantity));
     return true;
+  }
+
+  private boolean hasProductionDataInYear(int year) {
+    for (YearProductionData yearProductionData : productionData)
+      if (yearProductionData.getYear() == year) return true;
+
+    return false;
   }
 
   public Integer getProductionData(int year) {

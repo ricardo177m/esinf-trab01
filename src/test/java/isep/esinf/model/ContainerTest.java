@@ -15,6 +15,16 @@ public class ContainerTest {
   }
 
   @Test
+  public void testAddDuplicatedFruit() {
+    Container container = new Container();
+    container.addFruitData("apple", new FruitData());
+    container.addFruitData("orange", new FruitData());
+    container.addFruitData("banana", new FruitData());
+    container.addFruitData("apple", new FruitData());
+    assertEquals(container.size(), 3);
+  }
+
+  @Test
   public void testGetFruitData() {
     Container container = new Container();
     FruitData fruitData = new FruitData();
