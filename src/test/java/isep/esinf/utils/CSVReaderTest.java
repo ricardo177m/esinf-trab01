@@ -11,7 +11,7 @@ class CSVReaderTest {
   @Test
   void testReadWorks() throws FileNotFoundException {
     List<HashMap<String, String>> l = new ArrayList<HashMap<String, String>>();
-    CSVReader r = new CSVReader("./src/test/test.csv");
+    CSVReader r = new CSVReader("./src/test/data/test.csv");
 
     l = r.read();
 
