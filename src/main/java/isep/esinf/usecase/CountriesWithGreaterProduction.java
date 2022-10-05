@@ -14,7 +14,6 @@ import isep.esinf.model.YearProductionData;
 /*
  * Alínea 2.
  */
-
 public class CountriesWithGreaterProduction {
   Container data;
   String fruit;
@@ -34,11 +33,35 @@ public class CountriesWithGreaterProduction {
   public List<String> execute() {
     SortedMap<String, YearProductionData> map = getCountriesWithGreaterProduction(production);
 
+    return sortCountryListByProduction(map);
+  }
 
+  /**
+   *
+   * @param map The map to be sorted
+   * @return The map sorted by the following two criteria:
+   *
+   *         1. The country with the lowest year where the production is greater than the production passed as parameter
+   *
+   *         2. If the countries have the same year, the country with the highest production
+   *
+   *         As a SortedMap is used, the countries are sorted by the key (country name), so, in case of the same year and
+   *         same production the countries are sorted by name (alphabetically)
+   */
+  private List<String> sortCountryListByProduction(SortedMap<String, YearProductionData> map) {
     List<Entry<String, YearProductionData>> list = new ArrayList<>(map.entrySet());
     list.sort(Entry.comparingByValue());
 
-    return list.stream().map(Entry::getKey).toList();
+    return convertEntryListToCountryList(list);
+  }
+
+  private List<String> convertEntryListToCountryList(List<Entry<String, YearProductionData>> list) {
+    List<String> countries = new ArrayList<>();
+
+    for (Entry<String, YearProductionData> entry : list)
+      countries.add(entry.getKey());
+
+    return countries;
   }
 
   /* Gets the first year of production of a specific country with equal or higher quantity */
