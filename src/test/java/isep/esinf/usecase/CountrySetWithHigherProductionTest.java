@@ -16,9 +16,9 @@ public class CountrySetWithHigherProductionTest {
 
     // TODO: convert this data to a csv file and import it on setup
     CountryData countryData1 = new CountryData();
-    countryData1.addProductionData(2010, 100);
+    countryData1.addProductionData(2010, 50);
     countryData1.addProductionData(2011, 100);
-    countryData1.addProductionData(2012, 100);
+    countryData1.addProductionData(2012, 150);
 
     CountryData countryData2 = new CountryData();
     countryData2.addProductionData(2010, 200);
@@ -30,12 +30,16 @@ public class CountrySetWithHigherProductionTest {
     countryData3.addProductionData(2011, 300);
     countryData3.addProductionData(2012, 300);
 
-    FruitData fruitData = new FruitData();
-    fruitData.addCountryData("France", countryData1);
-    fruitData.addCountryData("Spain", countryData2);
-    fruitData.addCountryData("Portugal", countryData3);
+    FruitData fruitData1 = new FruitData();
+    fruitData1.addCountryData("France", countryData1);
+    fruitData1.addCountryData("Spain", countryData2);
+    fruitData1.addCountryData("Portugal", countryData3);
 
-    container.addFruitData("Maçã", fruitData);
+    FruitData fruitData2 = new FruitData();
+    fruitData2.addCountryData("Portugal", countryData1);
+
+    container.addFruitData("Maçã", fruitData1);
+    container.addFruitData("Pêra", fruitData2);
   }
 
   @Test
