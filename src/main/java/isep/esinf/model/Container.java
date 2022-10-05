@@ -35,6 +35,13 @@ public class Container implements Iterable<FruitData> {
   public Set<String> getFruits() {
     return data.keySet();
   }
+
+  public boolean contains(String fruit){
+    if (data.containsKey(fruit))
+      return true;
+    return false;
+  }
+
 }
 
 

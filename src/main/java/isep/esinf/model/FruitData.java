@@ -32,4 +32,10 @@ public class FruitData implements Iterable<CountryData> {
   public Iterator<CountryData> iterator() {
     return fruitData.values().iterator();
   }
+
+  public boolean contains(String country){
+    if (fruitData.containsKey(country))
+      return true;
+    return false;
+  }
 }

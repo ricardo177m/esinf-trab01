@@ -17,7 +17,7 @@ public class CSVReader {
   }
 
   public String[] readHeader() {
-    return sc.nextLine().split(";");
+    return sc.nextLine().split(",");
   }
 
   public List<HashMap<String, String>> read() {
@@ -27,9 +27,9 @@ public class CSVReader {
     while (sc.hasNextLine()) {
       HashMap<String, String> map = new HashMap<>();
 
-      String line[] = sc.nextLine().split(";");
+      String line[] = sc.nextLine().split(",");
       for (int i = 0; i < header.length; i++)
-        map.put(header[i], line[i]);
+        map.put(header[i], line[i].replace("\"", ""));
 
       list.add(map);
     }
