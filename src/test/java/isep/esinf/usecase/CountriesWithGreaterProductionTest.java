@@ -2,16 +2,20 @@ package isep.esinf.usecase;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import isep.esinf.exceptions.MissingFieldException;
 import isep.esinf.model.Container;
 import isep.esinf.model.CountryData;
 import isep.esinf.model.FruitData;
+import isep.esinf.utils.CSVReader;
 
 public class CountriesWithGreaterProductionTest {
-  static Container container;
+  private static Container container;
+
 
   // Setup of the tests
   @BeforeAll
@@ -181,5 +185,82 @@ public class CountriesWithGreaterProductionTest {
     }, "Production invalid.");
   }
 
-  // Tests with the small sample *TO DO
+  // Tests for small sample if none country appears with production higher
+  @Test
+  public void testSmallSample() throws FileNotFoundException, MissingFieldException {
+    CSVReader csvReader = new CSVReader("./data/FAOSTAT_data_en_9-7-2022_SMALL.csv");
+
+    DataHandler dataHandler = new DataHandler();
+    Container container = dataHandler.execute(csvReader.read());
+
+    CountriesWithGreaterProduction countriesWithGreaterProduction = new CountriesWithGreaterProduction(container, "Apples", 5000000);
+    List<String> res = countriesWithGreaterProduction.execute();
+    List<String> expected = new ArrayList<>();
+
+    assertEquals(expected, res);
+  }
+
+  // Test for small sample if the country Spain only gets on the list because Portugal do not have the quantity minimum
+  @Test
+  public void testSmallSampleTwo() throws FileNotFoundException, MissingFieldException {
+    CSVReader csvReader = new CSVReader("./data/FAOSTAT_data_en_9-7-2022_SMALL.csv");
+
+    DataHandler dataHandler = new DataHandler();
+    Container container = dataHandler.execute(csvReader.read());
+
+    CountriesWithGreaterProduction countriesWithGreaterProduction = new CountriesWithGreaterProduction(container, "Apples", 500000);
+    List<String> res = countriesWithGreaterProduction.execute();
+    List<String> expected = new ArrayList<>();
+    expected.add("Spain");
+
+    assertEquals(expected, res);
+  }
+
+  // Test for small sample if the country Spain only gets on the list because Portugal do not have the quantity minimum
+  @Test
+  public void testSmallSampleThree() throws FileNotFoundException, MissingFieldException {
+    CSVReader csvReader = new CSVReader("./data/FAOSTAT_data_en_9-7-2022_SMALL.csv");
+
+    DataHandler dataHandler = new DataHandler();
+    Container container = dataHandler.execute(csvReader.read());
+
+    CountriesWithGreaterProduction countriesWithGreaterProduction = new CountriesWithGreaterProduction(container, "Bananas", 34000);
+    List<String> res = countriesWithGreaterProduction.execute();
+    List<String> expected = new ArrayList<>();
+    expected.add("Spain");
+
+    assertEquals(expected, res);
+  }
+
+  // Test for small sample if the two countries are order by their production quantity correct
+  @Test
+  public void testSmallSampleFourth() throws FileNotFoundException, MissingFieldException {
+    CSVReader csvReader = new CSVReader("./data/FAOSTAT_data_en_9-7-2022_SMALL.csv");
+
+    DataHandler dataHandler = new DataHandler();
+    Container container = dataHandler.execute(csvReader.read());
+
+    CountriesWithGreaterProduction countriesWithGreaterProduction = new CountriesWithGreaterProduction(container, "Bananas", 100);
+    List<String> res = countriesWithGreaterProduction.execute();
+    List<String> expected = new ArrayList<>();
+    expected.add("Portugal");
+    expected.add("Spain");
+
+    assertEquals(expected, res);
+  }
+
+  // Test for small sample if none country appears with a fruit invalid
+  @Test
+  public void testSmallSampleFifth() throws FileNotFoundException, MissingFieldException {
+    CSVReader csvReader = new CSVReader("./data/FAOSTAT_data_en_9-7-2022_SMALL.csv");
+
+    DataHandler dataHandler = new DataHandler();
+    Container container = dataHandler.execute(csvReader.read());
+
+    assertThrows(IllegalArgumentException.class, () -> {
+      CountriesWithGreaterProduction countries = new CountriesWithGreaterProduction(container, "Kiwi", 4000);
+      countries.execute();
+    }, "Fruit invalid.");
+
+  }
 }
