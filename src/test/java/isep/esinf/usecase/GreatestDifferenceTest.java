@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.io.FileNotFoundException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
+import isep.esinf.exceptions.MissingFieldException;
 import isep.esinf.model.Container;
 import isep.esinf.model.CountryData;
 import isep.esinf.model.FruitData;
@@ -80,7 +82,7 @@ public class GreatestDifferenceTest {
   }
 
   @Test
-  public void testWithSmallSampleDataWithSpain() throws FileNotFoundException {
+  public void testWithSmallSampleDataWithSpain() throws FileNotFoundException, MissingFieldException {
     CSVReader csvReader = new CSVReader("./data/FAOSTAT_data_en_9-7-2022_SMALL.csv");
     DataHandler dataHandler = new DataHandler();
     Container container = dataHandler.execute(csvReader.read());
@@ -96,7 +98,7 @@ public class GreatestDifferenceTest {
   }
 
   @Test
-  public void testWithSmallSampleDataWithPortugal() throws FileNotFoundException {
+  public void testWithSmallSampleDataWithPortugal() throws FileNotFoundException, MissingFieldException {
     CSVReader csvReader = new CSVReader("./data/FAOSTAT_data_en_9-7-2022_SMALL.csv");
     DataHandler dataHandler = new DataHandler();
     Container container = dataHandler.execute(csvReader.read());
@@ -112,7 +114,7 @@ public class GreatestDifferenceTest {
   }
 
   @Test
-  public void testWithBigSampleData() throws FileNotFoundException {
+  public void testWithBigSampleData() throws FileNotFoundException, MissingFieldException {
     CSVReader csvReader = new CSVReader("./data/FAOSTAT_data_en_9-7-2022_BIG.csv");
     DataHandler dataHandler = new DataHandler();
     Container container = dataHandler.execute(csvReader.read());
