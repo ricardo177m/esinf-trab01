@@ -6,12 +6,13 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.junit.jupiter.api.Test;
 
 class CSVReaderTest {
   @Test
   public void testReadWorks() throws FileNotFoundException {
-    List<HashMap<String, String>> l = new ArrayList<HashMap<String, String>>();
+    List<? extends Map<String, String>> l = new ArrayList<HashMap<String, String>>();
     CSVReader r = new CSVReader("./src/test/data/test.csv");
 
     l = r.read();

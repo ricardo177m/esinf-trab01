@@ -10,7 +10,7 @@ import isep.esinf.model.FruitData;
  * Alínea 1.
  */
 public class DataHandler {
-  public Container execute(List<Map<String, String>> data) {
+  public Container execute(List<? extends Map<String, String>> data) {
     Container container = new Container();
 
     for (int i = 0; i < data.size(); i++) {

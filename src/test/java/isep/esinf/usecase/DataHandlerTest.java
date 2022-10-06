@@ -2,6 +2,7 @@ package isep.esinf.usecase;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.Map;
 import org.junit.jupiter.api.Test;
 import isep.esinf.exceptions.MissingFieldException;
 import isep.esinf.model.Container;
+import isep.esinf.utils.CSVReader;
 
 class DataHandlerTest {
   @Test
@@ -96,7 +98,12 @@ class DataHandlerTest {
     line.put("Item", "Apples");
     data.add(line);
 
-    assertThrows(MissingFieldException.class, () -> dh.execute(data), "Value field is required.");
+    Container actual = dh.execute(data);
+
+    assertEquals(1, actual.getFruits().size());
+    assertEquals(1, actual.getFruitData("Apples").getCountries().size());
+    assertEquals(2, actual.getFruitData("Apples").getCountryData("Afghanistan").getProductionYears().size());
+    assertEquals(0, actual.getFruitData("Apples").getCountryData("Afghanistan").getProductionData(1961));
   }
 
   @Test
@@ -125,5 +132,16 @@ class DataHandlerTest {
     data.add(line);
 
     assertThrows(MissingFieldException.class, () -> dh.execute(data), "Item field is required.");
+  }
+
+  @Test
+  public void testWithSmallDataSample() throws FileNotFoundException {
+    CSVReader csvReader = new CSVReader("./data/FAOSTAT_data_en_9-7-2022_SMALL.csv");
+    Container actual = new DataHandler().execute(csvReader.read());
+
+    assertEquals(2, actual.getFruits().size());
+    assertEquals(2, actual.getFruitData("Apples").getCountries().size());
+    assertEquals(21, actual.getFruitData("Apples").getCountryData("Spain").getProductionYears().size());
+    assertEquals(601979, actual.getFruitData("Apples").getCountryData("Spain").getProductionData(2009));
   }
 }

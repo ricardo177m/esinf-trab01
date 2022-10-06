@@ -1,12 +1,14 @@
 package isep.esinf.usecase;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.io.FileNotFoundException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import isep.esinf.model.Container;
 import isep.esinf.model.CountryData;
 import isep.esinf.model.FruitData;
 import isep.esinf.model.GreatestDifferenceResult;
+import isep.esinf.utils.CSVReader;
 
 public class GreatestDifferenceTest {
   static Container container;
@@ -78,8 +80,51 @@ public class GreatestDifferenceTest {
   }
 
   @Test
-  public void testWithSmallSampleData() {
-    // TODO: Implement this test using the small sample data
-    assertEquals(1, 1);
+  public void testWithSmallSampleDataWithSpain() throws FileNotFoundException {
+    CSVReader csvReader = new CSVReader("./data/FAOSTAT_data_en_9-7-2022_SMALL.csv");
+    DataHandler dataHandler = new DataHandler();
+    Container container = dataHandler.execute(csvReader.read());
+
+    GreatestDifference greatestDifference = new GreatestDifference(container, "Spain");
+
+    GreatestDifferenceResult result = greatestDifference.execute();
+
+    assertEquals("Apples", result.getFruit());
+    assertEquals(2001, result.getStartYear());
+    assertEquals(2002, result.getEndYear());
+    assertEquals(222587, result.getDifference());
+  }
+
+  @Test
+  public void testWithSmallSampleDataWithPortugal() throws FileNotFoundException {
+    CSVReader csvReader = new CSVReader("./data/FAOSTAT_data_en_9-7-2022_SMALL.csv");
+    DataHandler dataHandler = new DataHandler();
+    Container container = dataHandler.execute(csvReader.read());
+
+    GreatestDifference greatestDifference = new GreatestDifference(container, "Portugal");
+
+    GreatestDifferenceResult result = greatestDifference.execute();
+
+    assertEquals("Apples", result.getFruit());
+    assertEquals(2018, result.getStartYear());
+    assertEquals(2019, result.getEndYear());
+    assertEquals(106750, result.getDifference());
+  }
+
+  @Test
+  public void testWithBigSampleData() throws FileNotFoundException {
+    CSVReader csvReader = new CSVReader("./data/FAOSTAT_data_en_9-7-2022_BIG.csv");
+    DataHandler dataHandler = new DataHandler();
+    Container container = dataHandler.execute(csvReader.read());
+
+    GreatestDifference greatestDifference = new GreatestDifference(container, "India");
+
+    GreatestDifferenceResult result = greatestDifference.execute();
+
+    assertEquals("Bananas", result.getFruit());
+    assertEquals(2009, result.getStartYear());
+    assertEquals(2010, result.getEndYear());
+    assertEquals(3310500, result.getDifference());
+
   }
 }

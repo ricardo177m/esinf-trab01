@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class CSVReader {
@@ -20,9 +21,9 @@ public class CSVReader {
     return sc.nextLine().split(",");
   }
 
-  public List<HashMap<String, String>> read() {
+  public List<? extends Map<String, String>> read() {
     String[] header = readHeader();
-    List<HashMap<String, String>> list = new ArrayList<>();
+    List<Map<String, String>> list = new ArrayList<>();
 
     while (sc.hasNextLine()) {
       HashMap<String, String> map = new HashMap<>();
