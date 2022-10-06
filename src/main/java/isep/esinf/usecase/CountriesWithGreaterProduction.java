@@ -6,6 +6,7 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.SortedMap;
 import java.util.TreeMap;
+import isep.esinf.exceptions.FruitNotFoundException;
 import isep.esinf.model.Container;
 import isep.esinf.model.CountryData;
 import isep.esinf.model.FruitData;
@@ -30,7 +31,7 @@ public class CountriesWithGreaterProduction {
    * Gets the List of countries by their production. Only countries with 1 year or more of production of a specific fruit.
    * Only countries with equal or higher of quantity of production of that fruit
    */
-  public List<String> execute() {
+  public List<String> execute() throws FruitNotFoundException {
     SortedMap<String, YearProductionData> map = getCountriesWithGreaterProduction(production);
 
     return sortCountryListByProduction(map);
@@ -77,10 +78,10 @@ public class CountriesWithGreaterProduction {
    * criteria (produces the fruit, 1 year or more of production, higher or equal production), if it matches saves to the
    * SortedMap already by their production
    */
-  private SortedMap<String, YearProductionData> getCountriesWithGreaterProduction(int production) {
+  private SortedMap<String, YearProductionData> getCountriesWithGreaterProduction(int production) throws FruitNotFoundException {
     SortedMap<String, YearProductionData> res = new TreeMap<>();
     if (!data.contains(fruit)) {
-      throw new IllegalArgumentException("Fruit Invalid.");
+      throw new FruitNotFoundException("Fruit Invalid.");
     }
     FruitData fruitData = data.getFruitData(fruit);
     Set<String> countries = fruitData.getCountries();
