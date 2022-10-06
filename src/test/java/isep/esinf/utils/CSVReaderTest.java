@@ -1,6 +1,7 @@
 package isep.esinf.utils;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 class CSVReaderTest {
   @Test
-  void testReadWorks() throws FileNotFoundException {
+  public void testReadWorks() throws FileNotFoundException {
     List<HashMap<String, String>> l = new ArrayList<HashMap<String, String>>();
     CSVReader r = new CSVReader("./src/test/data/test.csv");
 
@@ -30,5 +31,11 @@ class CSVReaderTest {
     expected.add(map);
 
     assertEquals(expected, l);
+  }
+
+  public void testThrowsWithInvalidFile() {
+    assertThrows(FileNotFoundException.class, () -> {
+      new CSVReader("invalidFilePath.csv");
+    });
   }
 }
