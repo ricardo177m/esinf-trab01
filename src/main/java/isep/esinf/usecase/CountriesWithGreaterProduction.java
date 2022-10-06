@@ -79,7 +79,9 @@ public class CountriesWithGreaterProduction {
    */
   private SortedMap<String, YearProductionData> getCountriesWithGreaterProduction(int production) {
     SortedMap<String, YearProductionData> res = new TreeMap<>();
-
+    if (!data.contains(fruit)) {
+      throw new IllegalArgumentException("Fruit Invalid.");
+    }
     FruitData fruitData = data.getFruitData(fruit);
     Set<String> countries = fruitData.getCountries();
 
