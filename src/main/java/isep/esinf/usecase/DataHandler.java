@@ -18,7 +18,8 @@ public class DataHandler {
       FruitData fd = new FruitData();
 
       int year = Integer.parseInt(data.get(i).get("Year"));
-      int quantity = Integer.parseInt(data.get(i).get("Value"));
+      int quantity = 0;
+      if(data.get(i).get("Value") != "") quantity = Integer.parseInt(data.get(i).get("Value"));
       String country = data.get(i).get("Area");
       String fruit = data.get(i).get("Item");
 
