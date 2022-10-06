@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import isep.esinf.exceptions.MissingFieldException;
 import isep.esinf.model.Container;
 import isep.esinf.model.CountryData;
 import isep.esinf.model.FruitData;
@@ -186,7 +187,7 @@ public class CountriesWithGreaterProductionTest {
 
   // Tests for small sample if none country appears with production higher
   @Test
-  public void testSmallSample() throws FileNotFoundException {
+  public void testSmallSample() throws FileNotFoundException, MissingFieldException {
     CSVReader csvReader = new CSVReader("./data/FAOSTAT_data_en_9-7-2022_SMALL.csv");
 
     DataHandler dataHandler = new DataHandler();
@@ -201,7 +202,7 @@ public class CountriesWithGreaterProductionTest {
 
   // Test for small sample if the country Spain only gets on the list because Portugal do not have the quantity minimum
   @Test
-  public void testSmallSampleTwo() throws FileNotFoundException {
+  public void testSmallSampleTwo() throws FileNotFoundException, MissingFieldException {
     CSVReader csvReader = new CSVReader("./data/FAOSTAT_data_en_9-7-2022_SMALL.csv");
 
     DataHandler dataHandler = new DataHandler();
@@ -217,7 +218,7 @@ public class CountriesWithGreaterProductionTest {
 
   // Test for small sample if the country Spain only gets on the list because Portugal do not have the quantity minimum
   @Test
-  public void testSmallSampleThree() throws FileNotFoundException {
+  public void testSmallSampleThree() throws FileNotFoundException, MissingFieldException {
     CSVReader csvReader = new CSVReader("./data/FAOSTAT_data_en_9-7-2022_SMALL.csv");
 
     DataHandler dataHandler = new DataHandler();
@@ -233,7 +234,7 @@ public class CountriesWithGreaterProductionTest {
 
   // Test for small sample if the two countries are order by their production quantity correct
   @Test
-  public void testSmallSampleFourth() throws FileNotFoundException {
+  public void testSmallSampleFourth() throws FileNotFoundException, MissingFieldException {
     CSVReader csvReader = new CSVReader("./data/FAOSTAT_data_en_9-7-2022_SMALL.csv");
 
     DataHandler dataHandler = new DataHandler();
@@ -250,7 +251,7 @@ public class CountriesWithGreaterProductionTest {
 
   // Test for small sample if none country appears with a fruit invalid
   @Test
-  public void testSmallSampleFifth() throws FileNotFoundException {
+  public void testSmallSampleFifth() throws FileNotFoundException, MissingFieldException {
     CSVReader csvReader = new CSVReader("./data/FAOSTAT_data_en_9-7-2022_SMALL.csv");
 
     DataHandler dataHandler = new DataHandler();
