@@ -2,7 +2,6 @@ package isep.esinf.usecase;
 
 import java.util.HashMap;
 import java.util.List;
-
 import isep.esinf.model.Container;
 import isep.esinf.model.CountryData;
 import isep.esinf.model.FruitData;
@@ -14,17 +13,17 @@ public class DataHandler {
 
   Container data;
 
-  public DataHandler(){
+  public DataHandler() {
     data = new Container();
   }
 
-  public Container execute( List<HashMap<String, String>> data) {
+  public Container execute(List<HashMap<String, String>> data) {
 
     Container container = new Container();
 
     CountryData cd;
     FruitData fd;
-    
+
     for (int i = 0; i < data.size(); i++) {
       cd = new CountryData();
       fd = new FruitData();
@@ -34,16 +33,16 @@ public class DataHandler {
       String country = data.get(i).get("Area");
       String fruit = data.get(i).get("Item");
 
-      if(container.contains(fruit)){
+      if (container.contains(fruit)) {
         fd = container.getFruitData(fruit);
-        if(fd.contains(country)){
+        if (fd.contains(country)) {
           cd = fd.getCountryData(country);
           cd.addProductionData(year, quantity);
-        }else{
+        } else {
           cd.addProductionData(year, quantity);
-          fd.addCountryData(country, cd); 
+          fd.addCountryData(country, cd);
         }
-      }else{
+      } else {
         cd.addProductionData(year, quantity);
         fd.addCountryData(country, cd);
         container.addFruitData(fruit, fd);
