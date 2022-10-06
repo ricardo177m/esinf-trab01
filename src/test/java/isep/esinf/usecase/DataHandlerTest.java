@@ -14,7 +14,7 @@ import isep.esinf.utils.CSVReader;
 
 class DataHandlerTest {
   @Test
-  public void testDataHandler() {
+  public void testDataHandler() throws MissingFieldException {
     DataHandler dh = new DataHandler();
     List<Map<String, String>> data = new ArrayList<Map<String, String>>();
 
@@ -43,7 +43,7 @@ class DataHandlerTest {
   }
 
   @Test
-  public void testDataHandlerWithInvalidFields() {
+  public void testDataHandlerWithInvalidFields() throws MissingFieldException {
     DataHandler dh = new DataHandler();
     List<Map<String, String>> data = new ArrayList<Map<String, String>>();
 
@@ -88,7 +88,7 @@ class DataHandlerTest {
   }
 
   @Test
-  public void testDataHandlerWithMissingValueField() {
+  public void testDataHandlerWithMissingValueField() throws MissingFieldException {
     DataHandler dh = new DataHandler();
     List<Map<String, String>> data = new ArrayList<Map<String, String>>();
 
@@ -102,7 +102,7 @@ class DataHandlerTest {
 
     assertEquals(1, actual.getFruits().size());
     assertEquals(1, actual.getFruitData("Apples").getCountries().size());
-    assertEquals(2, actual.getFruitData("Apples").getCountryData("Afghanistan").getProductionYears().size());
+    assertEquals(1, actual.getFruitData("Apples").getCountryData("Afghanistan").getProductionYears().size());
     assertEquals(0, actual.getFruitData("Apples").getCountryData("Afghanistan").getProductionData(1961));
   }
 
@@ -135,7 +135,7 @@ class DataHandlerTest {
   }
 
   @Test
-  public void testWithSmallDataSample() throws FileNotFoundException {
+  public void testWithSmallDataSample() throws FileNotFoundException, MissingFieldException {
     CSVReader csvReader = new CSVReader("./data/FAOSTAT_data_en_9-7-2022_SMALL.csv");
     Container actual = new DataHandler().execute(csvReader.read());
 
