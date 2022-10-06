@@ -50,6 +50,10 @@ class CSVReader {
   -readHeader()
 }
 
+class DataHandler{
+  +execute(List<? extends Map<String, String>>)
+}
+
 interface Iterable
 
 interface Comparable
