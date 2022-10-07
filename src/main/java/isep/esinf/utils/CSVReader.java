@@ -30,7 +30,7 @@ public class CSVReader {
 
       String line[] = sc.nextLine().split(",");
       for (int i = 0; i < header.length; i++)
-        map.put(header[i], line[i].replace("\"", ""));
+        map.put(header[i], line[i].replaceAll("\"", ""));
 
       list.add(map);
     }
