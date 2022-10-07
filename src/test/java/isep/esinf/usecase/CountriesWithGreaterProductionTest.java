@@ -264,4 +264,18 @@ public class CountriesWithGreaterProductionTest {
     }, "Fruit invalid.");
 
   }
+
+  // @Test
+  public void testBigSample() throws FileNotFoundException, MissingFieldException {
+    CSVReader csvReader = new CSVReader("./data/FAOSTAT_data_en_9-7-2022_BIG.csv");
+
+    DataHandler dataHandler = new DataHandler();
+    Container container = dataHandler.execute(csvReader.read());
+
+    assertThrows(FruitNotFoundException.class, () -> {
+      CountriesWithGreaterProduction countries = new CountriesWithGreaterProduction(container, "Kiwi", 4000);
+      countries.execute();
+    }, "Fruit invalid.");
+
+  }
 }
