@@ -42,7 +42,7 @@ class CSVReaderTest {
   }
 
   @Test
-  public void testWithEmptyFile() throws FileNotFoundException{
+  public void testWithEmptyFile() throws FileNotFoundException {
     CSVReader r = new CSVReader("./src/test/data/EmptyFile.csv");;
     List<? extends Map<String, String>> l = new ArrayList<HashMap<String, String>>();
 
@@ -74,7 +74,7 @@ class CSVReaderTest {
     map.put("Flag", "M");
     map.put("Flag Description", "Data not available");
     expected.add(map);
-    
+
     map = new HashMap<String, String>();
     map.put("Domain Code", "QCL");
     map.put("Domain", "Crops and livestock products");
@@ -90,6 +90,30 @@ class CSVReaderTest {
     map.put("Unit", "tonnes");
     map.put("Flag", "M");
     map.put("Flag Description", "Data not available");
+    expected.add(map);
+
+    assertEquals(expected, l);
+  }
+
+  @Test
+  public void testReadWorksWithCommasBetweenQuotes() throws FileNotFoundException {
+    List<? extends Map<String, String>> l = new ArrayList<HashMap<String, String>>();
+    CSVReader r = new CSVReader("./src/test/data/testWithCommasBetweenQuotes.csv");
+
+    l = r.read();
+
+    HashMap<String, String> map = new HashMap<String, String>();
+    List<HashMap<String, String>> expected = new ArrayList<HashMap<String, String>>();
+
+    map.put("key1", "12,3");
+    map.put("key2", "4,56");
+    map.put("key3", "789");
+    expected.add(map);
+
+    map = new HashMap<String, String>();
+    map.put("key1", "ab,c");
+    map.put("key2", "def");
+    map.put("key3", "g,hi");
     expected.add(map);
 
     assertEquals(expected, l);
