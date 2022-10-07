@@ -62,6 +62,7 @@ public class CountrySetWithHigherProduction {
       }
     }
 
+    // convert values of the map to an array
     return productionQtyPerCountry.values().stream().mapToInt(i -> i).toArray();
   }
 
