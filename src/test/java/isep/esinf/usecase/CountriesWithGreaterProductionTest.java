@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import isep.esinf.exceptions.FruitNotFoundException;
 import isep.esinf.exceptions.MissingFieldException;
 import isep.esinf.model.Container;
 import isep.esinf.model.CountryData;
@@ -73,7 +74,7 @@ public class CountriesWithGreaterProductionTest {
    * production shows on the list by order
    */
   @Test
-  public void testCountriesWithProductionGrowth() {
+  public void testCountriesWithProductionGrowth() throws FruitNotFoundException {
     CountriesWithGreaterProduction countriesWithGreaterProduction = new CountriesWithGreaterProduction(container, "Fruit", 50);
 
     List<String> res = countriesWithGreaterProduction.execute();
@@ -91,7 +92,7 @@ public class CountriesWithGreaterProductionTest {
    * production shows on the list by order
    */
   @Test
-  public void testCountriesWithProductionGrowthSecond() {
+  public void testCountriesWithProductionGrowthSecond() throws FruitNotFoundException {
     CountriesWithGreaterProduction countriesWithGreaterProduction = new CountriesWithGreaterProduction(container, "Fruit", 130);
 
     List<String> res = countriesWithGreaterProduction.execute();
@@ -109,7 +110,7 @@ public class CountriesWithGreaterProductionTest {
    * shows on the list
    */
   @Test
-  public void testCountriesWithProductionGrowthThird() {
+  public void testCountriesWithProductionGrowthThird() throws FruitNotFoundException {
     CountriesWithGreaterProduction countriesWithGreaterProduction = new CountriesWithGreaterProduction(container, "Fruit", 400);
 
     List<String> res = countriesWithGreaterProduction.execute();
@@ -123,7 +124,7 @@ public class CountriesWithGreaterProductionTest {
    * Tests if the countriesWithGreaterProduction is working properly. Testing if none country shows on the list
    */
   @Test
-  public void testCountriesWithProductionGrowthFour() {
+  public void testCountriesWithProductionGrowthFour() throws FruitNotFoundException {
     CountriesWithGreaterProduction countriesWithGreaterProduction = new CountriesWithGreaterProduction(container, "Fruit", 4000);
 
     List<String> res = countriesWithGreaterProduction.execute();
@@ -137,7 +138,7 @@ public class CountriesWithGreaterProductionTest {
    * the years of production (>=1)
    */
   @Test
-  public void testCountriesWithProductionGrowthFifth() {
+  public void testCountriesWithProductionGrowthFifth() throws FruitNotFoundException {
     CountriesWithGreaterProduction countriesWithGreaterProduction = new CountriesWithGreaterProduction(container, "Apple", 50);
 
     List<String> res = countriesWithGreaterProduction.execute();
@@ -148,7 +149,7 @@ public class CountriesWithGreaterProductionTest {
   }
 
   @Test
-  public void testCountriesWithProductionGrowthSix() {
+  public void testCountriesWithProductionGrowthSix() throws FruitNotFoundException {
     CountriesWithGreaterProduction countriesWithGreaterProduction = new CountriesWithGreaterProduction(container, "Fruit", 300);
 
     List<String> res = countriesWithGreaterProduction.execute();
@@ -187,7 +188,7 @@ public class CountriesWithGreaterProductionTest {
 
   // Tests for small sample if none country appears with production higher
   @Test
-  public void testSmallSample() throws FileNotFoundException, MissingFieldException {
+  public void testSmallSample() throws FileNotFoundException, MissingFieldException, FruitNotFoundException {
     CSVReader csvReader = new CSVReader("./data/FAOSTAT_data_en_9-7-2022_SMALL.csv");
 
     DataHandler dataHandler = new DataHandler();
@@ -202,7 +203,7 @@ public class CountriesWithGreaterProductionTest {
 
   // Test for small sample if the country Spain only gets on the list because Portugal do not have the quantity minimum
   @Test
-  public void testSmallSampleTwo() throws FileNotFoundException, MissingFieldException {
+  public void testSmallSampleTwo() throws FileNotFoundException, MissingFieldException, FruitNotFoundException {
     CSVReader csvReader = new CSVReader("./data/FAOSTAT_data_en_9-7-2022_SMALL.csv");
 
     DataHandler dataHandler = new DataHandler();
@@ -218,7 +219,7 @@ public class CountriesWithGreaterProductionTest {
 
   // Test for small sample if the country Spain only gets on the list because Portugal do not have the quantity minimum
   @Test
-  public void testSmallSampleThree() throws FileNotFoundException, MissingFieldException {
+  public void testSmallSampleThree() throws FileNotFoundException, MissingFieldException, FruitNotFoundException {
     CSVReader csvReader = new CSVReader("./data/FAOSTAT_data_en_9-7-2022_SMALL.csv");
 
     DataHandler dataHandler = new DataHandler();
@@ -234,7 +235,7 @@ public class CountriesWithGreaterProductionTest {
 
   // Test for small sample if the two countries are order by their production quantity correct
   @Test
-  public void testSmallSampleFourth() throws FileNotFoundException, MissingFieldException {
+  public void testSmallSampleFourth() throws FileNotFoundException, MissingFieldException, FruitNotFoundException {
     CSVReader csvReader = new CSVReader("./data/FAOSTAT_data_en_9-7-2022_SMALL.csv");
 
     DataHandler dataHandler = new DataHandler();
@@ -257,7 +258,7 @@ public class CountriesWithGreaterProductionTest {
     DataHandler dataHandler = new DataHandler();
     Container container = dataHandler.execute(csvReader.read());
 
-    assertThrows(IllegalArgumentException.class, () -> {
+    assertThrows(FruitNotFoundException.class, () -> {
       CountriesWithGreaterProduction countries = new CountriesWithGreaterProduction(container, "Kiwi", 4000);
       countries.execute();
     }, "Fruit invalid.");
