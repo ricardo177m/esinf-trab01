@@ -49,6 +49,7 @@ class CSVReaderTest {
     assertEquals(new ArrayList<>(), l);
   }
 
+  @Test
   public void testReadsNotAvailableDataFile() throws FileNotFoundException {
     List<? extends Map<String, String>> l = new ArrayList<HashMap<String, String>>();
     CSVReader r = new CSVReader("./src/test/data/testWithNotAvailableData.csv");
