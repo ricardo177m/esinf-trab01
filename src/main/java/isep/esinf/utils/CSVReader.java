@@ -28,9 +28,18 @@ public class CSVReader {
     while (sc.hasNextLine()) {
       HashMap<String, String> map = new HashMap<>();
 
-      String line[] = sc.nextLine().split(",");
+      String line = sc.nextLine();
+      String lineFields[];
+
+      if(line.charAt(0) == '"'){
+        line.replace("\",\"", ","); // removes '","'
+        line = line.substring(1, line.length() -1); //removes first and last '"'
+      }
+
+      lineFields = line.split(",");      
+
       for (int i = 0; i < header.length; i++)
-        map.put(header[i], line[i].replaceAll("\"", ""));
+        map.put(header[i], lineFields[i]);
 
       list.add(map);
     }

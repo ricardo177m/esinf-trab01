@@ -2,6 +2,9 @@ package isep.esinf.usecase;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.io.FileNotFoundException;
+import java.util.List;
+import java.util.Map;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -117,7 +120,9 @@ public class GreatestDifferenceTest {
   public void testWithBigSampleData() throws FileNotFoundException, MissingFieldException {
     CSVReader csvReader = new CSVReader("./data/FAOSTAT_data_en_9-7-2022_BIG.csv");
     DataHandler dataHandler = new DataHandler();
-    Container container = dataHandler.execute(csvReader.read());
+
+    List<? extends Map<String, String>> data = csvReader.read();
+    Container container = dataHandler.execute(data);
 
     GreatestDifference greatestDifference = new GreatestDifference(container, "India");
 

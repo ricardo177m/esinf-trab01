@@ -61,22 +61,30 @@ class CSVReaderTest {
 
     map.put("Domain Code", "QCL");
     map.put("Domain", "Crops and livestock products");
+    map.put("Element Code", "5510");
+    map.put("Element", "Production");
     map.put("Area Code (FAO)", "18");
     map.put("Area", "Bhutan");
+    map.put("Item Code (FAO)", "486");
     map.put("Item", "Bananas");
+    map.put("Year Code", "1964");
     map.put("Year", "1964");
     map.put("Value", "");
     map.put("Unit", "tonnes");
     map.put("Flag", "M");
     map.put("Flag Description", "Data not available");
     expected.add(map);
-
+    
     map = new HashMap<String, String>();
     map.put("Domain Code", "QCL");
     map.put("Domain", "Crops and livestock products");
     map.put("Area Code (FAO)", "18");
+    map.put("Element Code", "5510");
+    map.put("Item Code (FAO)", "486");
+    map.put("Element", "Production");
     map.put("Area", "Bhutan");
     map.put("Item", "Bananas");
+    map.put("Year Code", "1965");
     map.put("Year", "1965");
     map.put("Value", "");
     map.put("Unit", "tonnes");
