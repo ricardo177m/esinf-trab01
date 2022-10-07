@@ -29,7 +29,7 @@ public class DataHandler {
         String fruit = data.get(i).get("Item");
 
         int quantity = 0;
-        if (data.get(i).get("Value") != null) quantity = Integer.parseInt(data.get(i).get("Value"));
+        if (data.get(i).get("Value") != null && data.get(i).get("Value") != "") quantity = Integer.parseInt(data.get(i).get("Value"));
 
         if (container.contains(fruit)) {
           fd = container.getFruitData(fruit);

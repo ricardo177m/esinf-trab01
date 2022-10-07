@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 
 class CSVReaderTest {
   @Test
-  public void testReadWorks() throws FileNotFoundException {
+  public void testReaderWorks() throws FileNotFoundException {
     List<? extends Map<String, String>> l = new ArrayList<HashMap<String, String>>();
     CSVReader r = new CSVReader("./src/test/data/test.csv");
 
@@ -34,9 +34,19 @@ class CSVReaderTest {
     assertEquals(expected, l);
   }
 
+  @Test
   public void testThrowsWithInvalidFile() {
     assertThrows(FileNotFoundException.class, () -> {
       new CSVReader("invalidFilePath.csv");
     });
   }
+
+  @Test
+  public void testWithEmptyFile() throws FileNotFoundException{
+    CSVReader r = new CSVReader("./src/test/data/EmptyFile.csv");;
+    List<? extends Map<String, String>> l = new ArrayList<HashMap<String, String>>();
+
+    assertEquals(new ArrayList<>(), l);
+  }
+
 }
