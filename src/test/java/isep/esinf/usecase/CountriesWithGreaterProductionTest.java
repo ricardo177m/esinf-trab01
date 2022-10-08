@@ -182,7 +182,7 @@ public class CountriesWithGreaterProductionTest {
   @Test
   public void testValidInputProduction() {
     assertThrows(IllegalArgumentException.class, () -> {
-      new CountriesWithGreaterProduction(container, "Fruit", 0);
+      new CountriesWithGreaterProduction(container, "Fruit", -1);
     }, "Production invalid.");
   }
 
@@ -265,7 +265,8 @@ public class CountriesWithGreaterProductionTest {
 
   }
 
-  // @Test
+  // Tests if with a invalid fruit it shows an error message
+  @Test
   public void testBigSample() throws FileNotFoundException, MissingFieldException {
     CSVReader csvReader = new CSVReader("./data/FAOSTAT_data_en_9-7-2022_BIG.csv");
 
@@ -276,6 +277,54 @@ public class CountriesWithGreaterProductionTest {
       CountriesWithGreaterProduction countries = new CountriesWithGreaterProduction(container, "Kiwi", 4000);
       countries.execute();
     }, "Fruit invalid.");
+
+  }
+
+  // Tests if with a production invalid it shows an error message
+  @Test
+  public void testBigSampleTwo() throws FileNotFoundException, MissingFieldException {
+    CSVReader csvReader = new CSVReader("./data/FAOSTAT_data_en_9-7-2022_BIG.csv");
+
+    DataHandler dataHandler = new DataHandler();
+    Container container = dataHandler.execute(csvReader.read());
+
+    assertThrows(IllegalArgumentException.class, () -> {
+      CountriesWithGreaterProduction countries = new CountriesWithGreaterProduction(container, "Apples", -1);
+      countries.execute();
+    }, "Production invalid.");
+
+  }
+
+  // Tests if with the highest number of production in the big sample gets the country correctly
+  @Test
+  public void testBigSampleThree() throws FileNotFoundException, MissingFieldException, FruitNotFoundException {
+    CSVReader csvReader = new CSVReader("./data/FAOSTAT_data_en_9-7-2022_BIG.csv");
+
+    DataHandler dataHandler = new DataHandler();
+    Container container = dataHandler.execute(csvReader.read());
+
+    CountriesWithGreaterProduction countriesWithGreaterProduction = new CountriesWithGreaterProduction(container, "Apples", 42425400);
+    List<String> res = countriesWithGreaterProduction.execute();
+    List<String> expected = new ArrayList<>();
+    expected.add("China, mainland");
+
+    assertEquals(expected, res);
+
+  }
+
+  // Tests if with a number above all quantity do not get any countries to show
+  @Test
+  public void testBigSampleFour() throws FileNotFoundException, MissingFieldException, FruitNotFoundException {
+    CSVReader csvReader = new CSVReader("./data/FAOSTAT_data_en_9-7-2022_BIG.csv");
+
+    DataHandler dataHandler = new DataHandler();
+    Container container = dataHandler.execute(csvReader.read());
+
+    CountriesWithGreaterProduction countriesWithGreaterProduction = new CountriesWithGreaterProduction(container, "Apples", 400000000);
+    List<String> res = countriesWithGreaterProduction.execute();
+    List<String> expected = new ArrayList<>();
+
+    assertEquals(expected, res);
 
   }
 }
