@@ -16,9 +16,9 @@ import isep.esinf.model.YearProductionData;
  * Alínea 2.
  */
 public class CountriesWithGreaterProduction {
-  Container data;
-  String fruit;
-  int production;
+  private Container data;
+  private String fruit;
+  private int production;
 
   /* Class constructor */
   public CountriesWithGreaterProduction(Container data, String fruit, int production) {

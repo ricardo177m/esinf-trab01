@@ -13,8 +13,8 @@ import isep.esinf.model.YearProductionData;
  * Alínea 4.
  */
 public class CountriesWithProductionGrowth {
-  Container data;
-  String fruit;
+  private Container data;
+  private String fruit;
 
   public CountriesWithProductionGrowth(Container data, String fruit) {
     this.data = data;

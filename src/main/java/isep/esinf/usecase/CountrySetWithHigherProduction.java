@@ -13,8 +13,8 @@ import isep.esinf.model.FruitData;
  * than Q.
  */
 public class CountrySetWithHigherProduction {
-  Container container;
-  int quantityQ;
+  private Container container;
+  private int quantityQ;
 
   public CountrySetWithHigherProduction(Container container, int quantity) {
     if (container == null) throw new IllegalArgumentException("Container cannot be null");

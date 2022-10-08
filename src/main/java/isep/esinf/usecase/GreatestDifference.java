@@ -9,8 +9,8 @@ import isep.esinf.model.GreatestDifferenceResult;
  * Alínea 5.
  */
 public class GreatestDifference {
-  Container data;
-  String country;
+  private Container data;
+  private String country;
 
   public GreatestDifference(Container data, String country) {
     this.data = data;

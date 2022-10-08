@@ -9,28 +9,27 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class CSVReader {
-  private Scanner sc;
-  private File file;
+  private Scanner scanner;
 
   private final String TEMP_SEPARATOR = ";";
 
   public CSVReader(String fileName) throws FileNotFoundException {
-    file = new File(fileName);
-    sc = new Scanner(file);
+    File file = new File(fileName);
+    scanner = new Scanner(file);
   }
 
   public String[] readHeader() {
-    return sc.nextLine().split(",");
+    return scanner.nextLine().split(",");
   }
 
   public List<? extends Map<String, String>> read() {
     String[] header = readHeader();
     List<Map<String, String>> list = new ArrayList<>();
 
-    while (sc.hasNextLine()) {
+    while (scanner.hasNextLine()) {
       HashMap<String, String> map = new HashMap<>();
 
-      String line = sc.nextLine();
+      String line = scanner.nextLine();
       String separator = ",";
 
       if (line.charAt(0) == '"') {
