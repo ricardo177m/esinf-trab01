@@ -6,7 +6,7 @@ import isep.esinf.model.FruitData;
 import isep.esinf.model.GreatestDifferenceResult;
 
 /*
- * AlÃ­nea 5.
+ * Alínea 5.
  */
 public class GreatestDifference {
   Container data;
@@ -22,7 +22,7 @@ public class GreatestDifference {
    * @return The first year of the two consecutive years in the country with the greatest difference in production.
    */
   public GreatestDifferenceResult execute() {
-    int maxDifference = 0;
+    int maxDifference = -1;
     String maxDifferenceFruit = "";
     int maxDifferenceStartYear = 0;
     int maxDifferenceEndYear = 0;
@@ -47,7 +47,7 @@ public class GreatestDifference {
       }
     }
 
-    if (maxDifference == 0) return null;
+    if (maxDifference == -1) return null;
     return new GreatestDifferenceResult(maxDifferenceFruit, maxDifferenceStartYear, maxDifferenceEndYear, maxDifference);
   }
 }
