@@ -1,4 +1,4 @@
-@startuml CD
+@startuml CD_SIMPLIFIED
 
 skinparam classAttributeIconSize 0
 hide empty members
@@ -40,18 +40,6 @@ class YearProductionData {
   +getQuantity()
   +equals(other)
   +compareTo(other)
-}
-
-class CSVReader {
-  -scanner: Scanner
-  -file: File
-
-  +read()
-  -readHeader()
-}
-
-class DataHandler{
-  +execute(List<? extends Map<String, String>>)
 }
 
 interface Iterable

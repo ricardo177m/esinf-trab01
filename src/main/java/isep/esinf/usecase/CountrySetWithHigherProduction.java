@@ -46,7 +46,7 @@ public class CountrySetWithHigherProduction {
   // fruit -> collection of countries data
   // for this task, we need to get the overall production qty for each country
   // but we don't need to know which value belongs to which country
-  public int[] getProductionQtyPerCountry() {
+  private int[] getProductionQtyPerCountry() {
     Map<String, Integer> productionQtyPerCountry = new HashMap<>();
 
     for (FruitData fruitData : this.container) {
@@ -66,8 +66,7 @@ public class CountrySetWithHigherProduction {
     return productionQtyPerCountry.values().stream().mapToInt(i -> i).toArray();
   }
 
-  // sort array
-  public void sortArray(int[] array) {
+  private void sortArray(int[] array) {
     for (int i = 0; i < array.length - 1; i++) {
       for (int j = i + 1; j < array.length; j++) {
         if (array[i] > array[j]) {

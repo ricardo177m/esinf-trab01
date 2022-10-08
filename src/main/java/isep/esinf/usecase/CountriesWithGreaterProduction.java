@@ -96,16 +96,14 @@ public class CountriesWithGreaterProduction {
     return res;
   }
 
-  /* Validates if the Fruit is valid, not NULL or EMPTY */
   private void validateFruit(String fruit) {
-    if (fruit == null || fruit == "") throw new IllegalArgumentException("Fruit invalid.");
+    if (fruit == null || fruit == "") throw new IllegalArgumentException("Invalid fruit.");
 
     this.fruit = fruit;
   }
 
-  /* Validates it the Production is valid, not NULL */
   private void validateProduction(int number) {
-    if (number == 0) throw new IllegalArgumentException("Production invalid.");
+    if (number < 0) throw new IllegalArgumentException("Production must be a positive integer.");
 
     this.production = number;
   }
