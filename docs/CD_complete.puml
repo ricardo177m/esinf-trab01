@@ -101,7 +101,7 @@ class CountriesWithGreaterProduction {
   -getProductionOfFirstYearWithGreaterProduction(countryData,production)
   -getCountriesWithGreaterProduction(production)
   -validateFruit(fruit)
-  -validateCountry(country)
+  -validateProduction(production)
 
   +execute()
 }
@@ -128,5 +128,7 @@ GreatestDifference --> Container : uses
 GreatestDifference --> GreatestDifferenceResult : outputs
 
 DataHandler ..> CSVReader : uses
+
+CountriesWithGreaterProduction --> Container : uses
 
 @enduml

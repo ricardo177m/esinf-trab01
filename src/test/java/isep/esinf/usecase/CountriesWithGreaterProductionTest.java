@@ -167,7 +167,7 @@ public class CountriesWithGreaterProductionTest {
   public void testValidInputFruit() {
     assertThrows(IllegalArgumentException.class, () -> {
       new CountriesWithGreaterProduction(container, "", 4000);
-    }, "Fruit invalid.");
+    }, "Invalid fruit.");
   }
 
   // Tests if the Fruit input is valid
@@ -175,7 +175,7 @@ public class CountriesWithGreaterProductionTest {
   public void testValidInputFruitTwo() {
     assertThrows(IllegalArgumentException.class, () -> {
       new CountriesWithGreaterProduction(container, null, 4000);
-    }, "Fruit invalid.");
+    }, "Invalid fruit.");
   }
 
   // Tests if the Production input is valid
@@ -183,7 +183,7 @@ public class CountriesWithGreaterProductionTest {
   public void testValidInputProduction() {
     assertThrows(IllegalArgumentException.class, () -> {
       new CountriesWithGreaterProduction(container, "Fruit", -1);
-    }, "Production invalid.");
+    }, "Production must be a positive integer.");
   }
 
   // Tests for small sample if none country appears with production higher
@@ -261,7 +261,7 @@ public class CountriesWithGreaterProductionTest {
     assertThrows(FruitNotFoundException.class, () -> {
       CountriesWithGreaterProduction countries = new CountriesWithGreaterProduction(container, "Kiwi", 4000);
       countries.execute();
-    }, "Fruit invalid.");
+    }, "Invalid fruit.");
 
   }
 
@@ -276,7 +276,7 @@ public class CountriesWithGreaterProductionTest {
     assertThrows(FruitNotFoundException.class, () -> {
       CountriesWithGreaterProduction countries = new CountriesWithGreaterProduction(container, "Kiwi", 4000);
       countries.execute();
-    }, "Fruit invalid.");
+    }, "Invalid fruit.");
 
   }
 
@@ -291,7 +291,7 @@ public class CountriesWithGreaterProductionTest {
     assertThrows(IllegalArgumentException.class, () -> {
       CountriesWithGreaterProduction countries = new CountriesWithGreaterProduction(container, "Apples", -1);
       countries.execute();
-    }, "Production invalid.");
+    }, "Production must be a positive integer.");
 
   }
 

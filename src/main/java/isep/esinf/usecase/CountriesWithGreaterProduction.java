@@ -56,6 +56,7 @@ public class CountriesWithGreaterProduction {
     return convertEntryListToCountryList(list);
   }
 
+  // Converts an entry list to a list of countries already sorted by the criteria
   private List<String> convertEntryListToCountryList(List<Entry<String, YearProductionData>> list) {
     List<String> countries = new ArrayList<>();
 
@@ -74,9 +75,9 @@ public class CountriesWithGreaterProduction {
   }
 
   /*
-   * Saves the countries by order of quantity of production of the fruit For every country it looks if it matches the
+   * Saves the countries by order of quantity of production of the fruit. For every country it looks if it matches the
    * criteria (produces the fruit, 1 year or more of production, higher or equal production), if it matches saves to the
-   * SortedMap already by their production
+   * SortedMap already by their production ascending
    */
   private SortedMap<String, YearProductionData> getCountriesWithGreaterProduction(int production) throws FruitNotFoundException {
     SortedMap<String, YearProductionData> res = new TreeMap<>();
@@ -96,12 +97,14 @@ public class CountriesWithGreaterProduction {
     return res;
   }
 
+  /* Validates if the fruit is an empty string or not */
   private void validateFruit(String fruit) {
     if (fruit == null || fruit == "") throw new IllegalArgumentException("Invalid fruit.");
 
     this.fruit = fruit;
   }
 
+  /* Validates if the production is a negative number or not */
   private void validateProduction(int number) {
     if (number < 0) throw new IllegalArgumentException("Production must be a positive integer.");
 
