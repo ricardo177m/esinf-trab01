@@ -32,4 +32,18 @@ public class YearProductionDataTest {
     YearProductionData yearProductionData2 = new YearProductionData(100, 100);
     assertEquals(yearProductionData1, yearProductionData2);
   }
+
+  @Test
+  public void testFalseByYear() {
+    YearProductionData yearProductionData1 = new YearProductionData(100, 100);
+    YearProductionData yearProductionData2 = new YearProductionData(101, 100);
+    assert (yearProductionData1 != yearProductionData2);
+  }
+
+  @Test
+  public void testFalseByYearAndQuantity() {
+    YearProductionData yearProductionData1 = new YearProductionData(100, 100);
+    YearProductionData yearProductionData2 = new YearProductionData(200, 200);
+    assert (yearProductionData1 != yearProductionData2);
+  }
 }

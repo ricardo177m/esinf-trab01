@@ -28,8 +28,11 @@ public class CountriesWithGreaterProduction {
   }
 
   /*
-   * Gets the List of countries by their production. Only countries with 1 year or more of production of a specific fruit.
-   * Only countries with equal or higher of quantity of production of that fruit
+   * 1. Gets the List of countries by their production.
+   *
+   * 2. Only countries with 1 year or more of production of a specific fruit.
+   *
+   * 3. Only countries with equal or higher of quantity of production of that fruit
    */
   public List<String> execute() throws FruitNotFoundException {
     SortedMap<String, YearProductionData> map = getCountriesWithGreaterProduction(production);
@@ -56,7 +59,7 @@ public class CountriesWithGreaterProduction {
     return convertEntryListToCountryList(list);
   }
 
-  // Converts an entry list to a list of countries already sorted by the criteria
+  /* Converts an entry list to a list of countries already sorted by the criteria */
   private List<String> convertEntryListToCountryList(List<Entry<String, YearProductionData>> list) {
     List<String> countries = new ArrayList<>();
 
@@ -81,9 +84,11 @@ public class CountriesWithGreaterProduction {
    */
   private SortedMap<String, YearProductionData> getCountriesWithGreaterProduction(int production) throws FruitNotFoundException {
     SortedMap<String, YearProductionData> res = new TreeMap<>();
+
     if (!data.contains(fruit)) {
-      throw new FruitNotFoundException("Fruit Invalid.");
+      throw new FruitNotFoundException("Invalid fruit.");
     }
+
     FruitData fruitData = data.getFruitData(fruit);
     Set<String> countries = fruitData.getCountries();
 
