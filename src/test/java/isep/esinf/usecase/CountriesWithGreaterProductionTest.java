@@ -17,7 +17,6 @@ import isep.esinf.utils.CSVReader;
 public class CountriesWithGreaterProductionTest {
   private static Container container;
 
-
   // Setup of the tests
   @BeforeAll
   public static void setup() {
