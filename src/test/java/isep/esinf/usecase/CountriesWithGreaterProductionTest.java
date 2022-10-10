@@ -69,37 +69,19 @@ public class CountriesWithGreaterProductionTest {
   }
 
   /*
-   * Tests if the countriesWithGreaterProduction is working properly. Testing if it shows all the 3 countries with higher
+   * Tests if the countriesWithGreaterProduction is working properly. Testing if it shows all the 4 countries with higher
    * production shows on the list by order
    */
   @Test
-  public void testCountriesWithProductionGrowth() throws FruitNotFoundException {
+  public void testCountriesWithProductionGrowthWithFourValidCountries() throws FruitNotFoundException {
     CountriesWithGreaterProduction countriesWithGreaterProduction = new CountriesWithGreaterProduction(container, "Fruit", 50);
 
     List<String> res = countriesWithGreaterProduction.execute();
     List<String> expected = new ArrayList<>();
     expected.add("First Country");
     expected.add("Second Country");
-    expected.add("Fourth Country");
     expected.add("Third Country");
-
-    assertEquals(expected, res);
-  }
-
-  /*
-   * Tests if the countriesWithGreaterProduction is working properly. Testing if it shows all the 3 countries with higher
-   * production shows on the list by order
-   */
-  @Test
-  public void testCountriesWithProductionGrowthSecond() throws FruitNotFoundException {
-    CountriesWithGreaterProduction countriesWithGreaterProduction = new CountriesWithGreaterProduction(container, "Fruit", 130);
-
-    List<String> res = countriesWithGreaterProduction.execute();
-    List<String> expected = new ArrayList<>();
-    expected.add("Second Country");
     expected.add("Fourth Country");
-    expected.add("Third Country");
-    expected.add("First Country");
 
     assertEquals(expected, res);
   }
@@ -109,7 +91,7 @@ public class CountriesWithGreaterProductionTest {
    * shows on the list
    */
   @Test
-  public void testCountriesWithProductionGrowthThird() throws FruitNotFoundException {
+  public void testCountriesWithProductionGrowthWithOneValidCountry() throws FruitNotFoundException {
     CountriesWithGreaterProduction countriesWithGreaterProduction = new CountriesWithGreaterProduction(container, "Fruit", 400);
 
     List<String> res = countriesWithGreaterProduction.execute();
@@ -123,7 +105,7 @@ public class CountriesWithGreaterProductionTest {
    * Tests if the countriesWithGreaterProduction is working properly. Testing if none country shows on the list
    */
   @Test
-  public void testCountriesWithProductionGrowthFour() throws FruitNotFoundException {
+  public void testCountriesWithProductionGrowthWithNoneValidCountries() throws FruitNotFoundException {
     CountriesWithGreaterProduction countriesWithGreaterProduction = new CountriesWithGreaterProduction(container, "Fruit", 4000);
 
     List<String> res = countriesWithGreaterProduction.execute();
@@ -137,7 +119,7 @@ public class CountriesWithGreaterProductionTest {
    * the years of production (>=1)
    */
   @Test
-  public void testCountriesWithProductionGrowthFifth() throws FruitNotFoundException {
+  public void testCountriesWithProductionGrowthWithInvalidFruit() throws FruitNotFoundException {
     CountriesWithGreaterProduction countriesWithGreaterProduction = new CountriesWithGreaterProduction(container, "Apple", 50);
 
     List<String> res = countriesWithGreaterProduction.execute();
@@ -148,7 +130,7 @@ public class CountriesWithGreaterProductionTest {
   }
 
   @Test
-  public void testCountriesWithProductionGrowthSix() throws FruitNotFoundException {
+  public void testCountriesWithProductionGrowthWithThreeValidCountries() throws FruitNotFoundException {
     CountriesWithGreaterProduction countriesWithGreaterProduction = new CountriesWithGreaterProduction(container, "Fruit", 300);
 
     List<String> res = countriesWithGreaterProduction.execute();
@@ -161,33 +143,33 @@ public class CountriesWithGreaterProductionTest {
 
   }
 
-  // Tests if the Fruit input is valid
+  /* Tests if the Fruit input is valid */
   @Test
-  public void testValidInputFruit() {
+  public void testInvalidFruitEmpty() {
     assertThrows(IllegalArgumentException.class, () -> {
       new CountriesWithGreaterProduction(container, "", 4000);
     }, "Invalid fruit.");
   }
 
-  // Tests if the Fruit input is valid
+  /* Tests if the Fruit input is valid */
   @Test
-  public void testValidInputFruitTwo() {
+  public void testInvalidFruitNull() {
     assertThrows(IllegalArgumentException.class, () -> {
       new CountriesWithGreaterProduction(container, null, 4000);
     }, "Invalid fruit.");
   }
 
-  // Tests if the Production input is valid
+  /* Tests if the Production input is valid */
   @Test
-  public void testValidInputProduction() {
+  public void testInvalidInputProduction() {
     assertThrows(IllegalArgumentException.class, () -> {
       new CountriesWithGreaterProduction(container, "Fruit", -1);
     }, "Production must be a positive integer.");
   }
 
-  // Tests for small sample if none country appears with production higher
+  /* Tests for small sample if none country appears with production higher */
   @Test
-  public void testSmallSample() throws FileNotFoundException, MissingFieldException, FruitNotFoundException {
+  public void testSmallSampleFileWithNoneCountryValid() throws FileNotFoundException, MissingFieldException, FruitNotFoundException {
     CSVReader csvReader = new CSVReader("./data/FAOSTAT_data_en_9-7-2022_SMALL.csv");
 
     DataHandler dataHandler = new DataHandler();
@@ -200,9 +182,9 @@ public class CountriesWithGreaterProductionTest {
     assertEquals(expected, res);
   }
 
-  // Test for small sample if the country Spain only gets on the list because Portugal do not have the quantity minimum
+  /* Test for small sample if the country Spain only gets on the list because Portugal do not have the quantity minimum */
   @Test
-  public void testSmallSampleTwo() throws FileNotFoundException, MissingFieldException, FruitNotFoundException {
+  public void testSmallSampleFileWithOneCountryValid() throws FileNotFoundException, MissingFieldException, FruitNotFoundException {
     CSVReader csvReader = new CSVReader("./data/FAOSTAT_data_en_9-7-2022_SMALL.csv");
 
     DataHandler dataHandler = new DataHandler();
@@ -218,7 +200,7 @@ public class CountriesWithGreaterProductionTest {
 
   // Test for small sample if the country Spain only gets on the list because Portugal do not have the quantity minimum
   @Test
-  public void testSmallSampleThree() throws FileNotFoundException, MissingFieldException, FruitNotFoundException {
+  public void testSmallSampleFileWithOneCountryValidWithDifferentProduction() throws FileNotFoundException, MissingFieldException, FruitNotFoundException {
     CSVReader csvReader = new CSVReader("./data/FAOSTAT_data_en_9-7-2022_SMALL.csv");
 
     DataHandler dataHandler = new DataHandler();
@@ -234,7 +216,7 @@ public class CountriesWithGreaterProductionTest {
 
   // Test for small sample if the two countries are order by their production quantity correct
   @Test
-  public void testSmallSampleFourth() throws FileNotFoundException, MissingFieldException, FruitNotFoundException {
+  public void testSmallSampleFileWithTwoCountriesValid() throws FileNotFoundException, MissingFieldException, FruitNotFoundException {
     CSVReader csvReader = new CSVReader("./data/FAOSTAT_data_en_9-7-2022_SMALL.csv");
 
     DataHandler dataHandler = new DataHandler();
@@ -251,7 +233,7 @@ public class CountriesWithGreaterProductionTest {
 
   // Test for small sample if none country appears with a fruit invalid
   @Test
-  public void testSmallSampleFifth() throws FileNotFoundException, MissingFieldException {
+  public void testSmallSampleFIleWithInvalidFruit() throws FileNotFoundException, MissingFieldException {
     CSVReader csvReader = new CSVReader("./data/FAOSTAT_data_en_9-7-2022_SMALL.csv");
 
     DataHandler dataHandler = new DataHandler();
@@ -264,9 +246,25 @@ public class CountriesWithGreaterProductionTest {
 
   }
 
+  // Test for small sample if none country appears with a fruit invalid
+  @Test
+  public void testSmallSampleFIleWithInvalidProduction() throws FileNotFoundException, MissingFieldException {
+    CSVReader csvReader = new CSVReader("./data/FAOSTAT_data_en_9-7-2022_SMALL.csv");
+
+    DataHandler dataHandler = new DataHandler();
+    Container container = dataHandler.execute(csvReader.read());
+
+    assertThrows(IllegalArgumentException.class, () -> {
+      CountriesWithGreaterProduction countries = new CountriesWithGreaterProduction(container, "Bananas", -1);
+      countries.execute();
+    }, "Production must be a positive number");
+
+  }
+
+
   // Tests if with a invalid fruit it shows an error message
   @Test
-  public void testBigSample() throws FileNotFoundException, MissingFieldException {
+  public void testBigSampleFileWithInvalidFruit() throws FileNotFoundException, MissingFieldException {
     CSVReader csvReader = new CSVReader("./data/FAOSTAT_data_en_9-7-2022_BIG.csv");
 
     DataHandler dataHandler = new DataHandler();
@@ -281,7 +279,7 @@ public class CountriesWithGreaterProductionTest {
 
   // Tests if with a production invalid it shows an error message
   @Test
-  public void testBigSampleTwo() throws FileNotFoundException, MissingFieldException {
+  public void testBigSampleWithInvalidProduction() throws FileNotFoundException, MissingFieldException {
     CSVReader csvReader = new CSVReader("./data/FAOSTAT_data_en_9-7-2022_BIG.csv");
 
     DataHandler dataHandler = new DataHandler();
@@ -296,7 +294,7 @@ public class CountriesWithGreaterProductionTest {
 
   // Tests if with the highest number of production in the big sample gets the country correctly
   @Test
-  public void testBigSampleThree() throws FileNotFoundException, MissingFieldException, FruitNotFoundException {
+  public void testBigSampleFileWithOneCountryValid() throws FileNotFoundException, MissingFieldException, FruitNotFoundException {
     CSVReader csvReader = new CSVReader("./data/FAOSTAT_data_en_9-7-2022_BIG.csv");
 
     DataHandler dataHandler = new DataHandler();
@@ -313,7 +311,7 @@ public class CountriesWithGreaterProductionTest {
 
   // Tests if with a number above all quantity do not get any countries to show
   @Test
-  public void testBigSampleFour() throws FileNotFoundException, MissingFieldException, FruitNotFoundException {
+  public void testBigSampleFileWithNoneCountryValid() throws FileNotFoundException, MissingFieldException, FruitNotFoundException {
     CSVReader csvReader = new CSVReader("./data/FAOSTAT_data_en_9-7-2022_BIG.csv");
 
     DataHandler dataHandler = new DataHandler();
