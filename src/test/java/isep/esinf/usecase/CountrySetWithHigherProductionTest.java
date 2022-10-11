@@ -10,6 +10,7 @@ import isep.esinf.model.FruitData;
 
 public class CountrySetWithHigherProductionTest {
   static Container container;
+  static CountryData countryData1;
   static String datafile = "./src/test/data/CountrySetWithHigherProductionUsecaseData.csv";
 
   @BeforeAll
@@ -17,7 +18,7 @@ public class CountrySetWithHigherProductionTest {
     container = new Container();
 
     // TODO: import this data from the csv file
-    CountryData countryData1 = new CountryData();
+    countryData1 = new CountryData();
     countryData1.addProductionData(2010, 50);
     countryData1.addProductionData(2011, 100);
     countryData1.addProductionData(2012, 150);
@@ -72,6 +73,17 @@ public class CountrySetWithHigherProductionTest {
   }
 
   @Test
+  public void testExpectedValue04() {
+    container.getFruitData("Pêra").addCountryData("Portugal", countryData1);
+
+    CountrySetWithHigherProduction countrySetWithHigherProduction = new CountrySetWithHigherProduction(container, 1600);
+    int result = countrySetWithHigherProduction.execute();
+    int expected = 2;
+
+    assertEquals(expected, result);
+  }
+
+  @Test
   public void testExceedQuantity() {
     CountrySetWithHigherProduction countrySetWithHigherProduction = new CountrySetWithHigherProduction(container, 9999999);
     int result = countrySetWithHigherProduction.execute();
@@ -83,5 +95,11 @@ public class CountrySetWithHigherProductionTest {
   @Test
   public void testInvalidQuantity() {
     assertThrows(IllegalArgumentException.class, () -> new CountrySetWithHigherProduction(container, -1));
+  }
+
+  @Test
+  public void testNullContainer() {
+    Container nullContainer = null;
+    assertThrows(IllegalArgumentException.class, () -> new CountrySetWithHigherProduction(nullContainer, -1));
   }
 }
