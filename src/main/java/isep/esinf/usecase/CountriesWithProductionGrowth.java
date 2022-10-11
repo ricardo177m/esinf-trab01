@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import isep.esinf.exceptions.FruitNotFoundException;
 import isep.esinf.model.Container;
 import isep.esinf.model.CountryData;
 import isep.esinf.model.FruitData;
@@ -21,10 +22,11 @@ public class CountriesWithProductionGrowth {
     this.fruit = fruit;
   }
 
-  public Map<Integer, ArrayList<String>> execute() {
+  public Map<Integer, ArrayList<String>> execute() throws FruitNotFoundException {
     Map<Integer, ArrayList<String>> result = new HashMap<>();
 
     FruitData fruitData = data.getFruitData(fruit);
+    if (fruitData == null) throw new FruitNotFoundException("Fruit not found.");
     Set<String> countries = fruitData.getCountries();
 
     for (String country : countries) {
