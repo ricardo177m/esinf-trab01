@@ -45,7 +45,9 @@ public class CountriesWithProductionGrowth {
         previousProductionQuantity = productionQuantity.getQuantity();
       }
 
-      ArrayList<String> list = (result.get(max) != null ? result.get(max) : new ArrayList<>());
+      ArrayList<String> list = result.get(max);
+      if (list == null) list = new ArrayList<String>();
+
       list.add(country);
 
       result.put(max, list);
