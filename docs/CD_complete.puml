@@ -131,4 +131,8 @@ DataHandler ..> CSVReader : uses
 
 CountriesWithGreaterProduction --> Container : uses
 
+CountriesWithProductionGrowth --> Container : uses
+
+CountrySetWithHigherProduction --> Container : uses
+
 @enduml

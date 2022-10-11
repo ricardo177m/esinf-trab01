@@ -53,7 +53,7 @@ public class CountrySetWithHigherProduction {
       for (String country : fruitData.getCountries()) {
         CountryData countryData = fruitData.getCountryData(country);
 
-        if (productionQtyPerCountry.containsKey(country)) {
+        if (productionQtyPerCountry.get(country) != null) {
           int newProdQty = productionQtyPerCountry.get(country) + countryData.getOverallProductionQuantity();
           productionQtyPerCountry.put(country, newProdQty);
         } else {

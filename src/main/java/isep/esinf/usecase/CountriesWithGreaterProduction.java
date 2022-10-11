@@ -1,11 +1,11 @@
 package isep.esinf.usecase;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
-import java.util.SortedMap;
-import java.util.TreeMap;
 import isep.esinf.exceptions.FruitNotFoundException;
 import isep.esinf.model.Container;
 import isep.esinf.model.CountryData;
@@ -35,7 +35,7 @@ public class CountriesWithGreaterProduction {
    * 3. Only countries with equal or higher of quantity of production of that fruit
    */
   public List<String> execute() throws FruitNotFoundException {
-    SortedMap<String, YearProductionData> map = getCountriesWithGreaterProduction(production);
+    Map<String, YearProductionData> map = getCountriesWithGreaterProduction(production);
 
     return sortCountryListByProduction(map);
   }
@@ -49,10 +49,10 @@ public class CountriesWithGreaterProduction {
    *
    *         2. If the countries have the same year, the country with the highest production
    *
-   *         As a SortedMap is used, the countries are sorted by the key (country name), so, in case of the same year and
-   *         same production the countries are sorted by name (alphabetically)
+   *         The countries will be sorted by their quantity of production, so, in case of the same year and same
+   *         production the countries are sorted by the insertion on the map because of the LinkedHashMap
    */
-  private List<String> sortCountryListByProduction(SortedMap<String, YearProductionData> map) {
+  private List<String> sortCountryListByProduction(Map<String, YearProductionData> map) {
     List<Entry<String, YearProductionData>> list = new ArrayList<>(map.entrySet());
     list.sort(Entry.comparingByValue());
 
@@ -80,12 +80,12 @@ public class CountriesWithGreaterProduction {
   /*
    * Saves the countries by order of quantity of production of the fruit. For every country it looks if it matches the
    * criteria (produces the fruit, 1 year or more of production, higher or equal production), if it matches saves to the
-   * SortedMap already by their production ascending
+   * LinkedHashMap already by their production ascending
    */
-  private SortedMap<String, YearProductionData> getCountriesWithGreaterProduction(int production) throws FruitNotFoundException {
-    SortedMap<String, YearProductionData> res = new TreeMap<>();
+  private Map<String, YearProductionData> getCountriesWithGreaterProduction(int production) throws FruitNotFoundException {
+    Map<String, YearProductionData> res = new LinkedHashMap<>();
 
-    if (!data.contains(fruit)) {
+    if (data.getFruitData(fruit) == null) {
       throw new FruitNotFoundException("Invalid fruit.");
     }
 

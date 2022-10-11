@@ -13,7 +13,7 @@ public class FruitData implements Iterable<CountryData> {
   }
 
   public boolean addCountryData(String country, CountryData countryData) {
-    if (fruitData.containsKey(country)) return false;
+    if (fruitData.get(country) != null) return false;
 
     fruitData.put(country, countryData);
     return true;
@@ -33,7 +33,7 @@ public class FruitData implements Iterable<CountryData> {
   }
 
   public boolean contains(String country) {
-    if (fruitData.containsKey(country)) return true;
+    if (fruitData.get(country) != null) return true;
     return false;
   }
 
