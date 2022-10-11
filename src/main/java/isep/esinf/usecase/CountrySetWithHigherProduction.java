@@ -5,6 +5,7 @@ import java.util.Map;
 import isep.esinf.model.Container;
 import isep.esinf.model.CountryData;
 import isep.esinf.model.FruitData;
+import isep.esinf.utils.MergeSort;
 
 /**
  * Alínea 3.
@@ -29,7 +30,7 @@ public class CountrySetWithHigherProduction {
 
     // since we only need to find the minimum number of countries, we can sort the array
     // and start from the highest production qty
-    sortArray(productionQtyPerCountry);
+    productionQtyPerCountry = MergeSort.sort(productionQtyPerCountry);
 
     int total = 0;
     for (int i = productionQtyPerCountry.length - 1; i >= 0; i--) {
@@ -64,17 +65,5 @@ public class CountrySetWithHigherProduction {
 
     // convert values of the map to an array
     return productionQtyPerCountry.values().stream().mapToInt(i -> i).toArray();
-  }
-
-  private void sortArray(int[] array) {
-    for (int i = 0; i < array.length - 1; i++) {
-      for (int j = i + 1; j < array.length; j++) {
-        if (array[i] > array[j]) {
-          array[i] += array[j];
-          array[j] = array[i] - array[j];
-          array[i] -= array[j];
-        }
-      }
-    }
   }
 }

@@ -2,19 +2,19 @@ package isep.esinf.usecase;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import isep.esinf.model.Container;
 import isep.esinf.model.CountryData;
 import isep.esinf.model.FruitData;
 
 public class CountrySetWithHigherProductionTest {
-  static Container container;
-  static CountryData countryData1;
-  static String datafile = "./src/test/data/CountrySetWithHigherProductionUsecaseData.csv";
+  Container container;
+  CountryData countryData1;
+  final String datafile = "./src/test/data/CountrySetWithHigherProductionUsecaseData.csv";
 
-  @BeforeAll
-  public static void setUp() {
+  @BeforeEach
+  public void setUp() {
     container = new Container();
 
     // TODO: import this data from the csv file
