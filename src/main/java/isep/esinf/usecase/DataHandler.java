@@ -20,7 +20,7 @@ public class DataHandler {
 
       if (data.get(i).get("Flag") != null && data.get(i).get("Flag").equals("M")) continue;
 
-      if (data.get(i).get("Year") == null) throw new MissingFieldException("Area field is required.");
+      if (data.get(i).get("Year") == null) throw new MissingFieldException("Year field is required.");
       if (data.get(i).get("Area") == null) throw new MissingFieldException("Area field is required.");
       if (data.get(i).get("Item") == null) throw new MissingFieldException("Item field is required.");
 
