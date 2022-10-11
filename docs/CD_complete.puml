@@ -135,4 +135,10 @@ CountriesWithProductionGrowth --> Container : uses
 
 CountrySetWithHigherProduction --> Container : uses
 
+DataHandler --> Container : uses
+
+DataHandler --> CountryData : uses
+
+DataHandler --> FruitData : uses
+
 @enduml
